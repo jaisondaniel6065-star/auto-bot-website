@@ -79,6 +79,61 @@
   .filter-scroll::-webkit-scrollbar { display: none; }
   /* Minimum tap target size for accessibility */
   .tap-target { min-width: 44px; min-height: 44px; }
+
+  /* ===== GLOBAL: prevent horizontal overflow ===== */
+  *, *::before, *::after { box-sizing: border-box; }
+  img, video, iframe { max-width: 100%; height: auto; }
+
+  /* ===== MOBILE OPTIMIZATIONS (≤767px) ===== */
+  @media (max-width: 767px) {
+    html, body { overflow-x: hidden; }
+    section, main, header, footer { max-width: 100%; overflow-x: hidden; }
+
+    /* Hero — image on top, text stacked below */
+    .hero-outer {
+      height: auto !important;
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-img-container {
+      position: relative !important;
+      top: auto !important; right: auto !important;
+      bottom: auto !important; left: auto !important;
+      width: 100%;
+      height: 260px;
+      flex-shrink: 0;
+    }
+    .hero-img-container img { object-fit: cover; object-position: center; width: 100%; height: 100%; }
+    .hero-img-container > div { display: none !important; }
+    .hero-text-container {
+      position: relative !important;
+      height: auto !important;
+      background: #f9f9f9;
+      padding: 20px 16px 28px;
+    }
+    .hero-text-container > div { max-width: 100% !important; }
+
+    /* Services — 2-column grid */
+    .services-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+    .services-grid .h-48 { height: 96px !important; }
+    .services-grid .service-card > div:last-child { padding: 8px !important; }
+    .services-grid .service-card h3 { font-size: 12px !important; line-height: 1.3 !important; margin-bottom: 2px !important; }
+    .services-grid .service-card .flex.items-center span.font-label-bold { display: none !important; }
+    .services-grid .service-card p { display: none !important; }
+    .services-grid .service-card a.w-full { height: 34px !important; font-size: 10px !important; }
+
+    /* Products — 2-column grid */
+    #product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+    #product-grid .product-card .p-md { padding: 10px !important; }
+    #product-grid .product-card h3 { font-size: 12px !important; line-height: 1.3 !important; margin-bottom: 4px !important; }
+    #product-grid .product-card .flex.justify-between.items-center {
+      flex-direction: column; align-items: flex-start; gap: 4px;
+    }
+    #product-grid .product-card .flex.justify-between.items-center .text-headline-md { font-size: 14px !important; }
+    #product-grid .product-card .flex.justify-between.items-center a {
+      width: 100% !important; text-align: center !important; padding: 5px 4px !important; font-size: 10px !important;
+    }
+  }
 </style>
 </head>
 <body class="bg-background text-on-background font-body-md antialiased">
@@ -128,13 +183,13 @@
 <section id="home">
 
   <!-- Hero -->
-  <div class="relative h-[600px] md:h-[720px] overflow-hidden bg-surface-container-low">
-    <div class="absolute inset-0 z-0">
+  <div class="relative h-[600px] md:h-[720px] overflow-hidden bg-surface-container-low hero-outer">
+    <div class="absolute inset-0 z-0 hero-img-container">
       <img alt="Technician installing leather seats" class="w-full h-full object-cover" fetchpriority="high" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAFOfueB4_uNJuV_PiF3y6S-_WYPRWM31fMagaui1p7Vg7BAA7SshOrIL_C5vEFC1xcdPULAs8TQRRxFU0nAP0fVXKLfEZVLbrYXHjZxwsRVBDkxMtkuzxtyM50T4gecGZP1hSW86uoM1JarQSvtV2cuj0c5W-RGmpoJBNEuWxRrCyRe5YdgRUxHrj2zhE0cyag-2x0-SSMQZ1LH0kPdgT05ZeoLy8z4y4xLvIiw7-YQUVAMSvi3FrsCWoNNQP_p1C8WrvY8aRYoY"/>
       <div class="absolute inset-0 hero-gradient hidden md:block"></div>
       <div class="absolute inset-0 bg-surface/60 md:hidden"></div>
     </div>
-    <div class="relative z-10 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop h-full flex flex-col justify-center items-start">
+    <div class="relative z-10 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop h-full flex flex-col justify-center items-start hero-text-container">
       <div class="max-w-[600px]">
         <h1 class="font-headline-lg text-headline-lg-mobile md:text-display-lg text-on-surface mb-md">
           Upgrade Your Car With <span class="text-primary">Premium Accessories</span>
@@ -443,7 +498,7 @@
       <p class="font-body-lg text-body-lg text-secondary max-w-2xl mb-lg">From high-tech electronics to professional protection, we offer expert installation for all car makes with precision and engineering excellence.</p>
       <div class="h-1 w-24 bg-primary-container"></div>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
+    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter services-grid">
       <!-- 1 -->
       <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
         <div class="relative h-48 overflow-hidden"><img alt="Android Screen Installation" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoMy1CPVZD0r8OebMM6JyDRuhPBU-Urp4IOsUGcnqObMsQ0oLH97djIqqkhYmCL1LxEIHBJPQ4GvjIFjgNrGUiOmYN_QP74-qcjoASjEorVYD4NP4eTe3yvqve606dYA9mXeuYp5elaWSqj18TbQXus1tjbrKNGCTQnvV_7n_6r2MN814zxmJZoynXb1e7ZXG3THc6yky1Fj7Diw-0gjOUiNWPDNxrA_U3UovshztcWHV8e3k9dmueZQ7l0G809TRti-90ceuate8"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
@@ -546,7 +601,7 @@
       <button class="category-btn flex-shrink-0 px-md py-sm rounded-full border border-outline hover:border-primary transition-all duration-200 text-label-bold font-label-bold" onclick="filterProducts('protection')">Protection</button>
     </div>
     <!-- Product Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter" id="product-grid">
+    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-gutter" id="product-grid">
       <div class="product-card" data-category="interior">
         <div class="bg-surface-container-lowest rounded-xl overflow-hidden custom-shadow group transition-transform duration-300 hover:-translate-y-1 border border-outline-variant/10">
           <div class="aspect-square relative overflow-hidden bg-surface-container-high"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO3oNgUKmIII3wX9RUSGv9Mx3zEahtokr3CrZiijnDf14bGdVNgDCz5r0rcxMxH7t4yp7avQfLsZ7OhGZ71O4eBZihPJsPJFxzoSyhbKtILabehZ0ondGqAKeDdSAdm7PvCFb2By-_aYQHIE_lVnuKdK3ePP-iaSD7dn1i2XDTVUeB5u0SsM3ErPVG1xnt1TENz3i7RnYlQw92mo1AtluhQCNRVHlXfJSBt41qK4s_IqlUjDltnxMm33JAm732UXc5QJ8D9rM6D6g"/></div>
