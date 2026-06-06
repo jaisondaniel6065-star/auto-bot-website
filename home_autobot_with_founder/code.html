@@ -89,39 +89,6 @@
     html, body { overflow-x: hidden; }
     section, main, header, footer { max-width: 100%; overflow-x: hidden; }
 
-    /* Hero — image on top, text stacked below */
-    .hero-outer {
-      height: auto !important;
-      display: flex;
-      flex-direction: column;
-    }
-    .hero-img-container {
-      position: relative !important;
-      top: auto !important; right: auto !important;
-      bottom: auto !important; left: auto !important;
-      width: 100%;
-      height: 260px;
-      flex-shrink: 0;
-    }
-    .hero-img-container img { object-fit: cover; object-position: center; width: 100%; height: 100%; }
-    .hero-img-container > div { display: none !important; }
-    .hero-text-container {
-      position: relative !important;
-      height: auto !important;
-      background: #f9f9f9;
-      padding: 20px 16px 28px;
-    }
-    .hero-text-container > div { max-width: 100% !important; }
-
-    /* Services — 2-column grid */
-    .services-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
-    .services-grid .h-48 { height: 96px !important; }
-    .services-grid .service-card > div:last-child { padding: 8px !important; }
-    .services-grid .service-card h3 { font-size: 12px !important; line-height: 1.3 !important; margin-bottom: 2px !important; }
-    .services-grid .service-card .flex.items-center span.font-label-bold { display: none !important; }
-    .services-grid .service-card p { display: none !important; }
-    .services-grid .service-card a.w-full { height: 34px !important; font-size: 10px !important; }
-
     /* Products — 2-column grid */
     #product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
     #product-grid .product-card .p-md { padding: 10px !important; }
@@ -133,6 +100,13 @@
     #product-grid .product-card .flex.justify-between.items-center a {
       width: 100% !important; text-align: center !important; padding: 5px 4px !important; font-size: 10px !important;
     }
+
+    /* CTA section — compact on mobile */
+    .cta-home { padding-top: 48px !important; padding-bottom: 48px !important; }
+    .cta-home h2 { font-size: 26px !important; line-height: 34px !important; margin-bottom: 12px !important; }
+    .cta-home p { font-size: 15px !important; line-height: 22px !important; margin-bottom: 20px !important; }
+    .cta-home .flex { gap: 12px !important; }
+    .cta-home a { padding: 10px 24px !important; font-size: 16px !important; }
   }
 </style>
 </head>
@@ -476,7 +450,7 @@
   </div>
 
   <!-- Red CTA -->
-  <div class="py-xl bg-primary text-white text-center">
+  <div class="py-xl bg-primary text-white text-center cta-home">
     <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
       <h2 class="text-display-lg font-headline-lg mb-md">Ready for a Transformation?</h2>
       <p class="text-body-lg mb-lg opacity-90 max-w-2xl mx-auto">Get in touch with our experts today and give your car the premium treatment it deserves.</p>
@@ -498,7 +472,7 @@
       <p class="font-body-lg text-body-lg text-secondary max-w-2xl mb-lg">From high-tech electronics to professional protection, we offer expert installation for all car makes with precision and engineering excellence.</p>
       <div class="h-1 w-24 bg-primary-container"></div>
     </div>
-    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter services-grid">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
       <!-- 1 -->
       <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
         <div class="relative h-48 overflow-hidden"><img alt="Android Screen Installation" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoMy1CPVZD0r8OebMM6JyDRuhPBU-Urp4IOsUGcnqObMsQ0oLH97djIqqkhYmCL1LxEIHBJPQ4GvjIFjgNrGUiOmYN_QP74-qcjoASjEorVYD4NP4eTe3yvqve606dYA9mXeuYp5elaWSqj18TbQXus1tjbrKNGCTQnvV_7n_6r2MN814zxmJZoynXb1e7ZXG3THc6yky1Fj7Diw-0gjOUiNWPDNxrA_U3UovshztcWHV8e3k9dmueZQ7l0G809TRti-90ceuate8"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
