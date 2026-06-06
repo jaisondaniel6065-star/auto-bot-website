@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Autobot | Premium Automotive Solutions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Preconnect: saves DNS + TLS time for font domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<!-- Hero image preload: browser fetches it immediately, before parsing body -->
+<link rel="preload" as="image" href="https://lh3.googleusercontent.com/aida-public/AB6AXuAAFOfueB4_uNJuV_PiF3y6S-_WYPRWM31fMagaui1p7Vg7BAA7SshOrIL_C5vEFC1xcdPULAs8TQRRxFU0nAP0fVXKLfEZVLbrYXHjZxwsRVBDkxMtkuzxtyM50T4gecGZP1hSW86uoM1JarQSvtV2cuj0c5W-RGmpoJBNEuWxRrCyRe5YdgRUxHrj2zhE0cyag-2x0-SSMQZ1LH0kPdgT05ZeoLy8z4y4xLvIiw7-YQUVAMSvi3FrsCWoNNQP_p1C8WrvY8aRYoY"/>
+<!-- Text fonts: async (non-render-blocking) — fallback font shows until loaded -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet"/></noscript>
+<!-- Material Symbols: kept synchronous — icons appear above fold in nav -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-tertiary-container": "#f5f5f4","tertiary": "#575858","on-primary-fixed": "#410007",
+          "on-error-container": "#93000a","on-surface-variant": "#5c403f","on-primary-container": "#fff2f1",
+          "surface-container-lowest": "#ffffff","surface-container-high": "#e8e8e8","on-primary-fixed-variant": "#92001b",
+          "background": "#f9f9f9","error-container": "#ffdad6","on-tertiary-fixed": "#1a1c1c",
+          "inverse-primary": "#ffb3b1","primary-fixed": "#ffdad8","on-surface": "#1a1c1c",
+          "surface-container-highest": "#e2e2e2","surface": "#f9f9f9","primary-container": "#d72638",
+          "secondary": "#5f5e5e","primary": "#b20024","surface-bright": "#f9f9f9","on-tertiary": "#ffffff",
+          "outline-variant": "#e4bdbb","surface-tint": "#bd0b29","outline": "#906f6e",
+          "tertiary-fixed": "#e3e2e2","on-primary": "#ffffff","on-tertiary-fixed-variant": "#464747",
+          "secondary-fixed": "#e5e2e1","secondary-fixed-dim": "#c8c6c5","surface-dim": "#dadada",
+          "on-error": "#ffffff","tertiary-container": "#6f7070","on-background": "#1a1c1c",
+          "inverse-on-surface": "#f1f1f1","secondary-container": "#e2dfde","primary-fixed-dim": "#ffb3b1",
+          "surface-container": "#eeeeee","tertiary-fixed-dim": "#c6c6c6","on-secondary-fixed": "#1c1b1b",
+          "error": "#ba1a1a","on-secondary-fixed-variant": "#474746","on-secondary-container": "#636262",
+          "surface-container-low": "#f3f3f3","inverse-surface": "#2f3131","on-secondary": "#ffffff",
+          "surface-variant": "#e2e2e2"
+        },
+        "borderRadius": {"DEFAULT": "0.25rem","lg": "0.5rem","xl": "0.75rem","full": "9999px"},
+        "spacing": {
+          "base": "8px","margin-mobile": "16px","xs": "4px","margin-desktop": "64px",
+          "lg": "48px","gutter": "24px","xl": "80px","sm": "12px","md": "24px"
+        },
+        "fontFamily": {
+          "headline-md": ["Montserrat"],"body-lg": ["Inter"],"headline-lg-mobile": ["Montserrat"],
+          "headline-lg": ["Montserrat"],"body-sm": ["Inter"],"display-lg": ["Montserrat"],
+          "body-md": ["Inter"],"label-bold": ["Inter"]
+        },
+        "fontSize": {
+          "headline-md": ["24px", {"lineHeight": "32px","fontWeight": "700"}],
+          "body-lg": ["18px", {"lineHeight": "28px","fontWeight": "400"}],
+          "headline-lg-mobile": ["28px", {"lineHeight": "36px","fontWeight": "700"}],
+          "headline-lg": ["32px", {"lineHeight": "40px","fontWeight": "700"}],
+          "body-sm": ["14px", {"lineHeight": "20px","fontWeight": "400"}],
+          "display-lg": ["48px", {"lineHeight": "56px","letterSpacing": "-0.02em","fontWeight": "700"}],
+          "body-md": ["16px", {"lineHeight": "24px","fontWeight": "400"}],
+          "label-bold": ["12px", {"lineHeight": "16px","letterSpacing": "0.05em","fontWeight": "600"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+  }
+  .text-shadow-sm { text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  .hero-gradient { background: linear-gradient(90deg, rgba(249,249,249,1) 0%, rgba(249,249,249,0.9) 50%, rgba(249,249,249,0) 100%); }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; overflow-y: auto; overflow-x: hidden; }
+  body { min-height: 100%; }
+  .service-card:hover .service-image { transform: scale(1.05); }
+  .active-filter { border-color: #b20024; color: #b20024; font-weight: 700; }
+  .custom-shadow { box-shadow: 0 16px 24px rgba(0,0,0,0.05); }
+  /* Hide scrollbar on filter bar (mobile horizontal scroll) */
+  .filter-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+  .filter-scroll::-webkit-scrollbar { display: none; }
+  /* Minimum tap target size for accessibility */
+  .tap-target { min-width: 44px; min-height: 44px; }
+</style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased">
+
+<!-- ===== STICKY NAV ===== -->
+<header class="sticky top-0 w-full z-50 bg-surface/95 backdrop-blur-md shadow-sm border-b border-outline-variant/20">
+  <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop flex justify-between items-center h-[80px]">
+    <a class="text-headline-md font-headline-md tracking-tight text-on-surface uppercase" href="#home">Autobot</a>
+    <nav class="hidden md:flex items-center gap-md">
+      <a id="nav-home" class="text-label-bold font-label-bold text-primary border-b-2 border-primary pb-1 transition-colors duration-200" href="#home">Home</a>
+      <a id="nav-services" class="text-label-bold font-label-bold text-secondary hover:text-primary transition-colors duration-200" href="#services">Services</a>
+      <a id="nav-products" class="text-label-bold font-label-bold text-secondary hover:text-primary transition-colors duration-200" href="#products">Products</a>
+      <a id="nav-contact" class="text-label-bold font-label-bold text-secondary hover:text-primary transition-colors duration-200" href="#contact">Contact</a>
+    </nav>
+    <div class="flex items-center gap-base">
+      <a class="hidden md:inline-block bg-primary-container text-on-primary font-label-bold text-label-bold px-md py-sm rounded-lg hover:opacity-90 transition-all duration-300 active:scale-[0.98]" href="#contact">Book Appointment</a>
+      <button class="md:hidden flex items-center justify-center w-11 h-11 text-on-surface tap-target" id="menu-toggle" aria-label="Open menu">
+        <span class="material-symbols-outlined text-[28px]">menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE MENU ===== -->
+<div class="hidden fixed inset-0 z-50 bg-surface flex flex-col" id="mobile-menu">
+  <div class="flex justify-between items-center px-margin-mobile h-[80px] border-b border-outline-variant/20">
+    <span class="text-headline-md font-headline-md uppercase text-on-surface">Autobot</span>
+    <button class="w-11 h-11 flex items-center justify-center tap-target" id="menu-close" aria-label="Close menu">
+      <span class="material-symbols-outlined text-[28px]">close</span>
+    </button>
+  </div>
+  <nav class="flex flex-col items-center justify-center flex-1 gap-xl">
+    <a class="mobile-nav-link text-headline-lg font-headline-lg text-primary" href="#home">Home</a>
+    <a class="mobile-nav-link text-headline-lg font-headline-lg text-secondary hover:text-primary transition-colors" href="#services">Services</a>
+    <a class="mobile-nav-link text-headline-lg font-headline-lg text-secondary hover:text-primary transition-colors" href="#products">Products</a>
+    <a class="mobile-nav-link text-headline-lg font-headline-lg text-secondary hover:text-primary transition-colors" href="#contact">Contact</a>
+  </nav>
+  <div class="px-margin-mobile pb-xl">
+    <a class="mobile-nav-link block w-full bg-primary-container text-on-primary font-label-bold text-label-bold px-md py-sm rounded-lg hover:opacity-90 text-center" href="#contact">Book Appointment</a>
+  </div>
+</div>
+
+<main>
+<!-- ================================================================
+     SECTION: HOME
+================================================================ -->
+<section id="home">
+
+  <!-- Hero -->
+  <div class="relative h-[600px] md:h-[720px] overflow-hidden bg-surface-container-low">
+    <div class="absolute inset-0 z-0">
+      <img alt="Technician installing leather seats" class="w-full h-full object-cover" fetchpriority="high" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAFOfueB4_uNJuV_PiF3y6S-_WYPRWM31fMagaui1p7Vg7BAA7SshOrIL_C5vEFC1xcdPULAs8TQRRxFU0nAP0fVXKLfEZVLbrYXHjZxwsRVBDkxMtkuzxtyM50T4gecGZP1hSW86uoM1JarQSvtV2cuj0c5W-RGmpoJBNEuWxRrCyRe5YdgRUxHrj2zhE0cyag-2x0-SSMQZ1LH0kPdgT05ZeoLy8z4y4xLvIiw7-YQUVAMSvi3FrsCWoNNQP_p1C8WrvY8aRYoY"/>
+      <div class="absolute inset-0 hero-gradient hidden md:block"></div>
+      <div class="absolute inset-0 bg-surface/60 md:hidden"></div>
+    </div>
+    <div class="relative z-10 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop h-full flex flex-col justify-center items-start">
+      <div class="max-w-[600px]">
+        <h1 class="font-headline-lg text-headline-lg-mobile md:text-display-lg text-on-surface mb-md">
+          Upgrade Your Car With <span class="text-primary">Premium Accessories</span>
+        </h1>
+        <p class="font-body-lg text-body-lg text-secondary mb-lg">Professional installation, premium products, and trusted automotive solutions for your cherished vehicle.</p>
+        <div class="flex flex-col sm:flex-row gap-base">
+          <a class="bg-primary-container text-on-primary px-lg py-md rounded-lg font-label-bold text-label-bold hover:opacity-90 transition-all" href="#contact">Book Appointment</a>
+          <a class="border-2 border-primary text-primary px-lg py-md rounded-lg font-label-bold text-label-bold hover:bg-primary/5 transition-all flex items-center justify-center gap-xs" href="https://wa.me/918547028299">
+            <span class="material-symbols-outlined text-[20px]">chat</span>WhatsApp Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust Strip -->
+  <div class="bg-inverse-surface py-md">
+    <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter text-center">
+        <div class="flex flex-col items-center">
+          <span class="text-headline-md font-headline-md text-primary-fixed-dim">15+</span>
+          <span class="text-label-bold text-surface-variant uppercase">Years Experience</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="text-headline-md font-headline-md text-primary-fixed-dim">10k+</span>
+          <span class="text-label-bold text-surface-variant uppercase">Happy Customers</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="text-headline-md font-headline-md text-primary-fixed-dim">Genuine</span>
+          <span class="text-label-bold text-surface-variant uppercase">OEM Parts Only</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="text-headline-md font-headline-md text-primary-fixed-dim">Expert</span>
+          <span class="text-label-bold text-surface-variant uppercase">Certified Team</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Services -->
+  <div class="py-xl bg-surface">
+    <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+      <div class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
+        <div>
+          <h2 class="text-headline-lg font-headline-lg text-on-surface">Our Featured Services</h2>
+          <div class="h-1 w-24 bg-primary mt-xs"></div>
+        </div>
+        <a class="text-primary font-label-bold text-label-bold flex items-center gap-xs hover:underline" href="#services">
+          VIEW ALL SERVICES <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+        <div class="group bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-md transition-all duration-300">
+          <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-md group-hover:bg-primary transition-colors">
+            <span class="material-symbols-outlined text-primary group-hover:text-white">tablet_android</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Android Screen</h3>
+          <p class="text-body-sm text-secondary">High-resolution touchscreens with seamless smartphone integration for modern connectivity.</p>
+        </div>
+        <div class="group bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-md transition-all duration-300">
+          <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-md group-hover:bg-primary transition-colors">
+            <span class="material-symbols-outlined text-primary group-hover:text-white">chair</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Leather Seat Covers</h3>
+          <p class="text-body-sm text-secondary">Custom-tailored premium leather upholstery designed for ultimate comfort and elegance.</p>
+        </div>
+        <div class="group bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-md transition-all duration-300">
+          <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-md group-hover:bg-primary transition-colors">
+            <span class="material-symbols-outlined text-primary group-hover:text-white">auto_awesome</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Ceramic Coating</h3>
+          <p class="text-body-sm text-secondary">Advanced 9H protection providing a brilliant mirror finish and long-lasting paint preservation.</p>
+        </div>
+        <div class="group bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-md transition-all duration-300">
+          <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-md group-hover:bg-primary transition-colors">
+            <span class="material-symbols-outlined text-primary group-hover:text-white">speaker</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Audio Upgrades</h3>
+          <p class="text-body-sm text-secondary">High-fidelity sound systems, subwoofers, and component speakers for an immersive drive.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popular Products Bento -->
+  <div class="py-xl bg-surface-container-low">
+    <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+      <div class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
+        <div>
+          <h2 class="text-headline-lg font-headline-lg text-on-surface">Popular Products</h2>
+          <div class="h-1 w-24 bg-primary mt-xs"></div>
+        </div>
+        <a class="text-primary font-label-bold text-label-bold flex items-center gap-xs hover:underline" href="#products">
+          VIEW ALL PRODUCTS <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+        <div class="md:col-span-6 lg:col-span-7 bg-white rounded-xl overflow-hidden flex flex-col md:flex-row shadow-sm group">
+          <div class="md:w-1/2 overflow-hidden">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXt-M9e_FPzb-6hM4ma79hix5kP_bA0q2eKBPjs5AoMR8LY_yU3QKW64P91hQ8aOD--lUa8HkfcGAYv7as3JXSp0qwWvNr8Z1uzaQHcs3xAFAodk2p_hwpbGA6UaGFh3W8RrrAv4P2mbJBfzcOoSAkv4y1_wnHcX9z-YZM04XaD28AymEBfQe1KlPmoVyHLpFxe09iKSz2z-b2jmN2zyHD7_snuQW1N-wdU_sNAAA5evAxo-IiGGBbbhAByFprXR1ucFC2gP4VdrE"/>
+          </div>
+          <div class="md:w-1/2 p-lg flex flex-col justify-center">
+            <span class="bg-primary/10 text-primary font-label-bold text-label-bold px-sm py-xs rounded inline-block mb-md self-start">BEST SELLER</span>
+            <h3 class="text-headline-md font-headline-md mb-xs">Android Stereo Pro</h3>
+            <p class="text-body-sm text-secondary mb-md">4GB RAM, Octa-Core processor with Apple CarPlay and Android Auto wireless support.</p>
+            <span class="text-headline-md font-headline-md text-primary mb-lg">₹18,500</span>
+            <a class="bg-inverse-surface text-white py-sm px-md rounded-lg font-label-bold text-label-bold hover:bg-primary transition-colors self-start" href="#contact">Enquire Now</a>
+          </div>
+        </div>
+        <div class="md:col-span-6 lg:col-span-5 bg-white rounded-xl p-md shadow-sm flex flex-col justify-between group">
+          <div class="aspect-video overflow-hidden rounded-lg mb-md">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGUTZtZveGY_h1mcXUZL6D636vSkOkwj2dRxnhZQNOOzu6nJaf1RjsatnYVlXPVq-8rM4GjEF_eGcJ5bs8Ct4l-bVXqulttEjbGTGwavgR8tieUa4O3cEJ2UxKoQzdyRZtUCvSZc3ehJus0fcqMh19ayvEuROu9OBKd5D7C3pVnS4IGeWx9Recc_C5eilh25PaVmnvE92aozBq64ykOTI5tv58dF4Q4VDo2MxzSjQ5KrO7OiLIcaSUwZI7V51LCOFtoO486DbDXaE"/>
+          </div>
+          <div>
+            <h3 class="text-headline-md font-headline-md mb-xs">Premium 7D Mats</h3>
+            <div class="flex justify-between items-center">
+              <span class="text-headline-md font-headline-md text-primary">₹4,200</span>
+              <a class="w-11 h-11 bg-surface-container flex items-center justify-center rounded-full hover:bg-primary hover:text-white transition-all tap-target" href="#contact">
+                <span class="material-symbols-outlined">shopping_cart</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="md:col-span-6 lg:col-span-4 bg-white rounded-xl p-md shadow-sm flex flex-col justify-between group">
+          <div class="aspect-video overflow-hidden rounded-lg mb-md">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA6h4B3P5VDUGe4jITZ7wg--UyvKpsVixyv2lQaREpI8bI6luMW5rrfHGn7HFPC42NCeq6i1NsAO3yepYqtzg_gTRqG7Ro-S5JQZmpuetKIYTUUn-SbeA68qsc-_itTWgwXav-FD0RU0i9AJqR3DzTS3Bvojg2c5xExW2K8vE88nKzNeqoLNCA5sKPFpYX9s0MRrEauJqFmI1itqSQKvy1mf6eMeT-D4Kh54gMcsTHFs7ZfiImErbF_5bSG5zYSQJB4Opyr1LjGmk"/>
+          </div>
+          <div>
+            <h3 class="text-headline-md font-headline-md mb-xs">4K Dual Dash Cam</h3>
+            <div class="flex justify-between items-center">
+              <span class="text-headline-md font-headline-md text-primary">₹9,800</span>
+              <a class="w-11 h-11 bg-surface-container flex items-center justify-center rounded-full hover:bg-primary hover:text-white transition-all tap-target" href="#contact">
+                <span class="material-symbols-outlined">shopping_cart</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="md:col-span-6 lg:col-span-8 bg-inverse-surface text-white rounded-xl p-lg shadow-sm flex flex-col md:flex-row gap-lg items-center">
+          <div class="flex-1">
+            <span class="text-primary font-label-bold text-label-bold mb-xs block">NEW ARRIVAL</span>
+            <h3 class="text-headline-md font-headline-md mb-md">Ultra-Bright LED Headlight Conversion Kit</h3>
+            <p class="text-surface-variant text-body-sm mb-lg">Experience crystal clear visibility with 20,000 lumens output. Direct plug-and-play installation with 2 years warranty.</p>
+            <div class="flex items-center gap-md">
+              <span class="text-display-lg font-headline-lg">₹3,500</span>
+              <a class="bg-primary text-white py-sm px-lg rounded-lg font-label-bold text-label-bold hover:bg-red-700 transition-all" href="#contact">Claim Offer</a>
+            </div>
+          </div>
+          <div class="w-full md:w-1/3">
+            <div class="aspect-square bg-white/5 rounded-full flex items-center justify-center">
+              <span class="material-symbols-outlined text-[80px] text-primary" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why Choose Us -->
+  <div class="py-xl bg-surface border-y border-outline-variant/10">
+    <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop text-center">
+      <h2 class="text-headline-lg font-headline-lg text-on-surface mb-lg">Why Autobot is Your Best Choice</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+        <div class="flex flex-col items-center">
+          <div class="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center mb-md border-2 border-primary/20">
+            <span class="material-symbols-outlined text-primary text-[40px]">architecture</span>
+          </div>
+          <h4 class="text-headline-md font-headline-md mb-xs">Professional Workshop</h4>
+          <p class="text-body-md text-secondary">A sterile, organized, and dust-free environment ensuring the best care for your vehicle.</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center mb-md border-2 border-primary/20">
+            <span class="material-symbols-outlined text-primary text-[40px]">engineering</span>
+          </div>
+          <h4 class="text-headline-md font-headline-md mb-xs">Expert Technicians</h4>
+          <p class="text-body-md text-secondary">Our team is trained by OEM partners to handle premium cars with precision and care.</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center mb-md border-2 border-primary/20">
+            <span class="material-symbols-outlined text-primary text-[40px]">verified_user</span>
+          </div>
+          <h4 class="text-headline-md font-headline-md mb-xs">Warranty Support</h4>
+          <p class="text-body-md text-secondary">We stand behind our work with comprehensive warranty packages on products and labor.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="py-xl bg-surface-container-lowest overflow-hidden">
+    <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+      <div class="mb-lg text-center">
+        <h2 class="text-headline-lg font-headline-lg text-on-surface">What Our Customers Say</h2>
+        <div class="h-1 w-24 bg-primary mt-xs mx-auto"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+        <div class="bg-surface p-lg rounded-xl shadow-sm border border-outline-variant/10">
+          <div class="flex gap-xs text-primary mb-md">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+          </div>
+          <p class="text-body-md text-on-surface italic mb-lg">"The level of professionalism at Autobot is unmatched. I got my ceramic coating done here, and my Fortuner looks better than showroom condition even after 6 months."</p>
+          <div class="flex items-center gap-md">
+            <div class="w-12 h-12 bg-surface-dim rounded-full flex items-center justify-center font-headline-md text-secondary">RK</div>
+            <div><h5 class="font-label-bold text-on-surface">Rahul Kapoor</h5><p class="text-body-sm text-secondary">Toyota Fortuner Owner</p></div>
+          </div>
+        </div>
+        <div class="bg-surface p-lg rounded-xl shadow-sm border border-outline-variant/10">
+          <div class="flex gap-xs text-primary mb-md">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+          </div>
+          <p class="text-body-md text-on-surface italic mb-lg">"Best place in Kochi for Android screen upgrades. They handled the wiring so neatly, no cuts or splices. Highly recommend their seat cover collections too!"</p>
+          <div class="flex items-center gap-md">
+            <div class="w-12 h-12 bg-surface-dim rounded-full flex items-center justify-center font-headline-md text-secondary">AM</div>
+            <div><h5 class="font-label-bold text-on-surface">Anjali Menon</h5><p class="text-body-sm text-secondary">Honda City Owner</p></div>
+          </div>
+        </div>
+        <div class="bg-surface p-lg rounded-xl shadow-sm border border-outline-variant/10">
+          <div class="flex gap-xs text-primary mb-md">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">star</span>
+          </div>
+          <p class="text-body-md text-on-surface italic mb-lg">"Very satisfied with the 7D mats and audio setup. The technician took time to explain every detail. The workshop is very clean and staff is very polite."</p>
+          <div class="flex items-center gap-md">
+            <div class="w-12 h-12 bg-surface-dim rounded-full flex items-center justify-center font-headline-md text-secondary">VS</div>
+            <div><h5 class="font-label-bold text-on-surface">Vivek Sharma</h5><p class="text-body-sm text-secondary">Hyundai Creta Owner</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workshop Gallery -->
+  <div class="py-xl bg-surface">
+    <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+      <div class="mb-lg">
+        <h2 class="text-headline-lg font-headline-lg text-on-surface">Inside Our Workshop</h2>
+        <div class="h-1 w-24 bg-primary mt-xs"></div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-base">
+        <div class="aspect-square rounded-lg overflow-hidden"><img class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSkSIXxA6vLfNKAMXaRTBBIqeT4xMVxH-nmq30yjEyfXMsdZ-yDkCD0IEMgOzkbb2WKWC7rLmAaxywUZrwTjBGsNjHATQTuqYcU-DPKn-PA77v4vr1tmKSZQNXKtlkLgkyUwSwMrJYblCYlt30SpVP9X9u5zgHHalpzr_My7FIJiIMgdYyTBSxcPQJaKrpxOzrpHy1ZswWXaOIy7whig9fEzRK9MYj_pPLeUJwdtqtpFrotXVgCKeRlrxeiKMGMBtHqeW8mvi0VtI"/></div>
+        <div class="aspect-square rounded-lg overflow-hidden"><img class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAggMP1TMxvpT5__SGjSbwL207FfrPhw6Cahf56zmWIPa3UvGAf7yTpDdUBbYfIWUGfqho8StYFNTRAwcy9gJXzvQNSOClwQ-9ZVeD1i8uX0V8r7yGkYRnDyN9beRZ4l8XE0ftuSBjlG1VtGbW0PBLceQN4Gu2LW97G1huFX4KugK4Puy1oOabnzt5fSNsb3_PDfy3KFNyuSx1i1RUZs_jyyVxt3F54mYw7B8BR2aqimbE6n5lPd64ocpTYVT2cfSuAqvKtge1M2Rs"/></div>
+        <div class="aspect-square rounded-lg overflow-hidden"><img class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLjZYqUrIBmJLDNGWgFZQvBZYvROGzl84gO1j7DczsGTIeWhdeja-WZg5cH4f8f9AmjjnQSaR8a9qgRr_H4bbFFuHTU9KOj4OkiP6oWmCArnIbR9ZK1nBlRTOyACWj_j8zlYNvDeVJktXJQWOjkdUgMFmLGU2Bsw2aFlIbbgkSNKBLMIj6qRAbxVKS30xYXUTkPm6eOCCvwH0scPqpkDxO2WBz2uYr6PtNSImQYmd-t1Z7Fe8MhmQ7Q0NMZPggxGfdYPrykwU6dlQ"/></div>
+        <div class="aspect-square rounded-lg overflow-hidden"><img class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFSdzaU9s46S8mqBFlFgrvc67Can7I4FIOJNw9zX4aEdSYPAxJqrjYyZKnCFoRnVIs7iyH_I8V9MVbbRHsh1wZzCyju6DPLYqyBmDkIiWP-M5Zug_Frd4gHXgqAb4jeSb36IcsEzd3SlXmDbsRSoSijkKUGnLj-tgxu8HXTmqTWIfaUJk95WmSxKYeve4P2ZCIfRavSazy3OmuEB-5JUNeQM-gUAyVd-ywL9g3sElbFpSCjEUfUk0_84ZRkFlVQKnAW-O98es8V_E"/></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Founder Section -->
+  <div class="py-xl bg-surface-container-low border-t border-outline-variant/10">
+    <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
+        <div class="relative">
+          <div class="absolute -inset-4 bg-primary/5 rounded-xl -z-10"></div>
+          <div class="rounded-xl overflow-hidden shadow-xl">
+            <img alt="Arjun Nair, Founder of Autobot" class="w-full h-full object-cover" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFL3H_mlYuRXu9U0JCac73oCfzWGr6T8VUP_7LOuhhgfiGS0dj1W2CkOTDVp5SkFFZOwW4KTR_ENIHpc6lHKognMUOT2gqJIefmpY2zZJtJP0gccFHMlnuVPrubNV961SQGhMcHyDXV_hkiEC0cNYgIO1XNogjLrJU2GlsW5cjuavCydMdTHIlrpEfJ4cbbKSVy5uDyKnVwPxxE7EbeO-Hgzeg0tW4FNO0ytn4WhTPmXj3zcZR04l6FwY32u0f3Fo9MszpV8pcFDY"/>
+          </div>
+        </div>
+        <div class="flex flex-col gap-md">
+          <div>
+            <span class="text-primary font-label-bold text-label-bold uppercase tracking-wider">Founder's Message</span>
+            <h2 class="text-headline-lg font-headline-lg text-on-surface mt-xs">Driven by Passion, Built on Trust</h2>
+          </div>
+          <div class="flex flex-col gap-base">
+            <p class="text-body-lg text-secondary">At Autobot, we believe that every car tells a story. My journey began with a simple passion for automotive excellence and a vision to bring world-class accessory solutions to the heart of Kochi. We don't just install products; we enhance your driving experience with precision and care.</p>
+            <p class="text-body-lg text-secondary">Our commitment to quality is absolute. From sourcing genuine OEM parts to training our technicians to the highest standards, every detail is managed with the same dedication I would give to my own vehicle. Thank you for trusting us with your cherished cars.</p>
+          </div>
+          <div class="mt-md">
+            <p class="font-headline-md text-on-surface">Arjun Nair</p>
+            <p class="text-label-bold text-secondary uppercase">Founder &amp; CEO, Autobot</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Red CTA -->
+  <div class="py-xl bg-primary text-white text-center">
+    <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+      <h2 class="text-display-lg font-headline-lg mb-md">Ready for a Transformation?</h2>
+      <p class="text-body-lg mb-lg opacity-90 max-w-2xl mx-auto">Get in touch with our experts today and give your car the premium treatment it deserves.</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-md">
+        <a class="bg-white text-primary px-xl py-md rounded-lg font-headline-md text-headline-md hover:bg-surface-container-high transition-all" href="#contact">Get a Quote</a>
+        <a class="border-2 border-white text-white px-xl py-md rounded-lg font-headline-md text-headline-md hover:bg-white/10 transition-all" href="tel:+918547028299">Call Us Now</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- ================================================================
+     SECTION: SERVICES
+================================================================ -->
+<section id="services" class="bg-surface-container-lowest">
+  <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+    <div class="mb-xl text-center md:text-left">
+      <h2 class="font-headline-lg text-headline-lg md:text-display-lg text-on-surface mb-md max-w-3xl leading-tight">Premium Automotive Services</h2>
+      <p class="font-body-lg text-body-lg text-secondary max-w-2xl mb-lg">From high-tech electronics to professional protection, we offer expert installation for all car makes with precision and engineering excellence.</p>
+      <div class="h-1 w-24 bg-primary-container"></div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
+      <!-- 1 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="Android Screen Installation" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoMy1CPVZD0r8OebMM6JyDRuhPBU-Urp4IOsUGcnqObMsQ0oLH97djIqqkhYmCL1LxEIHBJPQ4GvjIFjgNrGUiOmYN_QP74-qcjoASjEorVYD4NP4eTe3yvqve606dYA9mXeuYp5elaWSqj18TbQXus1tjbrKNGCTQnvV_7n_6r2MN814zxmJZoynXb1e7ZXG3THc6yky1Fj7Diw-0gjOUiNWPDNxrA_U3UovshztcWHV8e3k9dmueZQ7l0G809TRti-90ceuate8"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">tablet_android</span><span class="font-label-bold text-label-bold uppercase">Electronics</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Android Screen</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">High-performance responsive touch interfaces for seamless vehicle integration.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+      <!-- 2 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="Apple CarPlay Setup" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlgxIoEbpOEz4Zf2R2zuDvEToekclv-s8Gsk2M9LE6LpNW1UvekFdBDE4ZMXBGacUpYqSAwH7evWmlFVJyhDnHMvzjWFJnlMN40j9DsLSYxlWoUFWkAAj5vV-YPrzWEc2-xUqImtgR_c0pnD0XfIjukREzMRufVqu8O09sky2ggFi1hAJ8W8aqTwaYRIKfRrfV8TwSMi083Pjx6OayQhud6zqJwBmbm6OK9X_sh48eh8vF5rz7Y4Nb48-PteKjyyrZHEFEy5bggHE"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">smartphone</span><span class="font-label-bold text-label-bold uppercase">Connectivity</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Apple CarPlay</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Wireless and wired smartphone integration for your premium drive.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+      <!-- 3 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="Reverse Camera Installation" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzaGyatkaRuTOBezIIMoyZ-877W97S0_BA9jyXi3FGnAa7yMy-B4qlmZw9SSz2qF0U8kwDQbe-dlleyIopzz76WeY5YZLfZPZYIQTXKTqkRGzFIjemSYuSXYn-N_49QaK3J_ZfbvAgk53tH-VwkJk-KQ2pFv6dGwZ5N6o10e1AJ7Rfe1UfxbiEyF6v5IFKXn1ob22vGM30V2h_iU6q3SMgR2Y6_upcD8WJ833Tkdbj6FeKRKiP70F1YEwBdIWh7kvLBWTAx_dvC4s"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">settings_backup_restore</span><span class="font-label-bold text-label-bold uppercase">Safety</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Reverse Camera</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Crystal clear rearview visibility with dynamic parking assistance lines.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+      <!-- 4 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="360 Camera System" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6Zm9t6dokuxP4axCmERd5zvbhS79bynEYKwgdSHSpgRaYftbfinowSpJWLO8iAhyOS5LtLRDuMxyAzQ31uOk3x-CYE1s7S-ZnrGDkgzkXq0VwFoILPDE63snTfHmkWHpG6TnewWHmo_eX35-bCtWEwcZVge5U08gc-iEwWYRvBYVYfpUkeGWo0663uCSJc04GgW9BisdIwMTglA3XJu7fi9kcDdX5fgQWBbwM3F22vCZjnbe9YC7Sa0HYmAozmmfMjCAsr-0YNMA"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">videocam</span><span class="font-label-bold text-label-bold uppercase">Assistance</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">360 Camera</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Complete bird's-eye view monitoring for confident urban maneuvering.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+      <!-- 5 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="Dash Cam Installation" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWvqD8izF6iddA6bMejwN5unXeZRFMQWsaNcYAwhvABsDN6_mVkt2d3aOLOcPGt0ZIQPhA_BpnK1NI-VR28MeWgjH8Jm9CwfQBL0lqXpcdsw21CiNbvPXS0qdmnf1PEpRn7wy2J5C3EAHEy-IMKzlsFbi4E8PM2qXNYB-bpF2XR0HPM3Wuro8JYKETiE5SSOCMgTHLwo0ekZCYODnh8q4VVgVlk5XQ1sUhZSWTNRrUpXN6gHYDAZdcgg6Cf5rOoAoUoC0r8n5ccfo"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">emergency_recording</span><span class="font-label-bold text-label-bold uppercase">Security</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Dash Cam</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Reliable recording systems with 24/7 parking mode monitoring.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+      <!-- 6 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="GPS Tracker" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFkyv0LrMMUI3WxmPdCdNdFvQoacGXymZUEE4ypiJ7Thn9KLkB97Q3dv2HHQ4ySvYwvvIFapdCS1K4byqMhWSDLgb5PWH85pQWQOznk40f-aLV1Ig8SEmd17824u3gsicYBg8H6rExVCDUzlOfPCYc7yPyupRA9Tjug0viQMPaHQePMAqOSZ5KY84kqdWGouk-Pln8UFm_TBWmBhy-pPVbVwI9wZQIdIWxwc7pKLmuEqC-dYLGE5BktFnC34SAEeHYaLDLpDIlQX4"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">location_on</span><span class="font-label-bold text-label-bold uppercase">Protection</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">GPS Tracker</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Real-time location tracking with geofencing and anti-theft alerts.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+      <!-- 7 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="Parking Sensors" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN3R4Er7F74mt054YwKYlZO4d2mzvXi67KTxliI3J8r9VJ2xz3r4PGGhg_L5hblweFMv2pEuyu19ximrvF3ADdzkcu_kzuJL4on3uwUcWGFfi_b2yV1QroBjGlTPJQ8mkKTOiAo7-Qe_ZGTxycJ3KN5j6GHIweCLMwqR_qpL7KydIFJGm3V340ZOryyTBaUOFeupettPI3wxo4VZTA_YgBYnyIgeATEauAf3x6CcWzZPnZI197Ni-79lLx2uUl9WvgtWTwN9rcOvc"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">sensor_occupied</span><span class="font-label-bold text-label-bold uppercase">Utility</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Parking Sensors</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Precision proximity sensors for effortless parking in any space.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+      <!-- 8 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="Car Audio Upgrade" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWtz13k94jMis4rnp0oDEjutuQDkoIrkbaReNazmKmW1spUqgL8VnPVNGnaTiv3DHeRvovRGx8R_OUrOEMd2d1bWg9iGwt1QjuKj52h7T1YpbOYjuM0q3BK0IJZO42nN2DEzma1wLmBNm96HaN6dSJ3fAsLaUif75CkmOi-3b3z3b5TU2TKuJfM_c3iENGXjVt9z9EtaTqp74wDUJBGrGzkI4GyNRyzvXL3Gnz959jvfr9ccXb5mLshXSgnYK-xCwfgzC1zNP3bpk"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">speaker</span><span class="font-label-bold text-label-bold uppercase">Sound</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Car Audio</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Audiophile-grade speaker upgrades and professional sound tuning.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+      <!-- 9 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="Subwoofer Installation" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0j9Gnpj-i2JoMVqstwFk_ndexmNMM-qnsV_eWVV-7HgJX0qOUuzikg6iUXJyh_lptAAHCT16_rxaSKRKb_Y1KgbHgt91MxLwRKF3AQL4Omb2zL5HqDwGj_7kCR0nHO3LoAeoseW7BujG2G_QwMczbG1qLFnS100d5T6IS8PxPKlYtrvIH3lxZkeGrzOCq1wLun4Mxvn4zXW9sXnwrGjEi4xPgSvpT7J1UEEO7KnNxdJ9BTbtxeWkYkMt-BtnBxIFVGkkaf2cd_o8"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">volume_up</span><span class="font-label-bold text-label-bold uppercase">Bass</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Subwoofer</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Deep, rich bass enhancement with space-saving custom enclosures.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+      <!-- 10 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="Ambient Lighting" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdUsGEeQim1QTEYT5SSk8Dw9Fr4LRE7-4WqN57sN62fqMl2iVNpaHEkMvzf50i15_CMR79l6QjrUshPy5cOFHZcAMQMdkmBomUUFFXkrYrPol3obx1S7QN0bwUG4fb2koHYAqvmav7-FFBHnqlqa5cdWiAFW9aC7KOYp38OPO17CHOUiFr8CyvM1ZCkraxWXInPi5qPXPjcSkA-AyoCZQqNa3CxJHV3HUckUP_fBzHuSBkXpc-zAb8MJW2aD3QDI55INf6xCYV3l4"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">light_mode</span><span class="font-label-bold text-label-bold uppercase">Aesthetic</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Ambient Lighting</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Multi-zone app-controlled LED accents to enhance interior mood.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+      <!-- 11 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="Leather Seat Covers" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtI5azQ-52rtfokhI1ZXfMJcAA1NbjMdNTFotIWW-3IdAAiOvVO20iwygzdbVrTqqrE0AoiukynrdRgvsshQwR3ae89mj6AqY5DaOKjgqDN8uBDMLWt20iO900uahgV1Yu-BzbIgBBl_3TpJnPS72Yi4HUZxy9Op-6_gaNcL8hQzVYgY4CDm9WTahz7XriWbCYI5SgyHavXy6xd8hCK-qh5rrOk_vpWYfbrOynFPhwDQATn3lC8D6dFSRTUVCuS5U9ZncCcr-j7pM"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">chair</span><span class="font-label-bold text-label-bold uppercase">Luxury</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Leather Seat Covers</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Custom-stitched premium leather and leatherette seat transformations.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+      <!-- 12 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="Steering Cover" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1UzFy-yeQ2kaSETTKU79sCPGLbF-krnnseXEx-jsXmDivswkvZ_JjQrutl9IUSmYK4PeCIvcAABQm5BpMFR7d1dRGNxrij4ZGOTvecJuYU1XpVQk_DgDbYyGpT_g3yDOKHPpiIFtyC6LuRVi8wOjEwGre50QNZ7AB9CneMFjI8omqTzpjJlfr7hGUQuBY9Yr6XnJInasjX0lcEUzQQf2tpvJGehTCMUAw1MPGn9567sFJBNdtuBB1PI-2578AnzF_E0A10TSuX9A"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">trip_origin</span><span class="font-label-bold text-label-bold uppercase">Detail</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Steering Cover</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Hand-stitched leather steering covers for ultimate grip and comfort.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+      <!-- 13 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="Ceramic Coating" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwN2HYIIIdt0ZcwqyDwpuqXLuBVd4skt_7XXgVauemRit6rzk_WYLMLG07EtiTOWfwL9KZ1Byx0ImxyjLDFRWWz06ozY7vcbHoMddBFfJpOu1kTGRJE_AEeBrbZ8yULWxiGrV9cG66J-v13622iHxI4AGwo9vgnMYnANDHX8_SLj1sAuwzwFYYp1S4UbY_Om_axFKReRanaJyiIlsHoMUk-48U21PH83IE8Ulx5PLfVUcjTqe8m8SzwZ5AfIVuvXufrQ_7nSW0fhs"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">auto_fix_high</span><span class="font-label-bold text-label-bold uppercase">Protection</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Ceramic Coating</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Nano-ceramic technology for mirror-like shine and 9H hardness protection.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+      <!-- 14 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="PPF Installation" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn7TJSI_pQ0ATHGYK4C22npDOcXtQaNb9i5yarYz49lSgO6OWwkYa6KLLIue2X_1PPv7AwyTYDzDuBpe_4JEYfeatQyq2BNWuMsBW0e4-8mgvgQLtDgf7nCCaWou1jHHFZ-O3CDg4Jplue2fQKKX97P0k1Dmwn50AGlBQPjwRqt6_yC565yVaFFm0dSKY0BHWPGT9ofGu9tSsiJrruqLO0miCpMmdqQOP-bRX13Ty8zoAtMi3FKxR2621zDlmPJGQE91Sc_ahMwJw"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">shield</span><span class="font-label-bold text-label-bold uppercase">Defense</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">PPF</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Self-healing TPU film to guard against stone chips and scratches.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+      <!-- 15 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="Car Detailing" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1GFBFbevyBdSqYBmq_CiIIxt9Uee2_Ns174HPbcJoRnabCPVl_r2dcavEjel3a_ADFFoQbFyICuBJlY-PJLszkYA5hm3LTkCx5QS8wTw7wk_oUO9O5Hwv99KVd_Yh6tUaYAJDL-9snTgfWnAKP5ITwHYn3dMVQRtssCpqD_mz9He3Xdrk8vEdRaiwdovSqph4gqd_YOvSZvaxbBuP7YBNAw_WaRJGqTCQvxfvYtdJbgJ1oFz2pHJjE9GC3dTK1Qi_kPsVIUpCaBM"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">cleaning_services</span><span class="font-label-bold text-label-bold uppercase">Restoration</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Car Detailing</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Comprehensive interior and exterior restoration for a showroom finish.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+      <!-- 16 -->
+      <div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-outline-variant/10">
+        <div class="relative h-48 overflow-hidden"><img alt="Interior Customization" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv8XHUV2SH9Vqs71zkpEZ1gM_eu_sT5BOtG80zIjXmX-n2x90HVr_vNAw8vAEKP5fBc0nw1cAsY-AaajMAWqi1EDaAwCNHKz9BtutAKMzjaURKLkd4FF45cCyWkajfUxTyHr_3FNYKl2nFLDdBqQiJazHfVTdZYii6mZnya-ISAdDrocELJdzDavcImjQ231k2N6oalB-7VBWgMWNfD_agmbfV-rPJMVUXfOoBsYBtfBYguq5u9sk74Y8JS8Bob-HlFFk2Onz4hfY"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div>
+        <div class="p-md flex flex-col flex-grow"><div class="flex items-center gap-xs text-primary-container mb-xs"><span class="material-symbols-outlined text-[20px]">dashboard_customize</span><span class="font-label-bold text-label-bold uppercase">Bespoke</span></div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Interior Customization</h3><p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Full cabin transformations including trim painting and soft-touch updates.</p><div class="mt-auto"><a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="#contact">Book Service</a></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     SECTION: PRODUCTS
+================================================================ -->
+<section id="products" class="bg-background">
+  <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+    <div class="mb-lg">
+      <h2 class="font-headline-lg text-headline-lg md:text-display-lg text-on-surface mb-xs">Explore Premium Accessories</h2>
+      <p class="text-secondary text-body-lg max-w-2xl">Precision-engineered enhancements for your vehicle, curated for the discerning driver.</p>
+    </div>
+    <!-- Category Filters -->
+    <div class="filter-scroll flex flex-nowrap overflow-x-auto gap-sm mb-lg border-b border-surface-container-highest pb-md sticky top-[80px] bg-background z-40 -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0 md:flex-wrap">
+      <button class="category-btn active-filter flex-shrink-0 px-md py-sm rounded-full border border-outline transition-all duration-200 text-label-bold font-label-bold" onclick="filterProducts('all')">All Products</button>
+      <button class="category-btn flex-shrink-0 px-md py-sm rounded-full border border-outline hover:border-primary transition-all duration-200 text-label-bold font-label-bold" onclick="filterProducts('interior')">Interior</button>
+      <button class="category-btn flex-shrink-0 px-md py-sm rounded-full border border-outline hover:border-primary transition-all duration-200 text-label-bold font-label-bold" onclick="filterProducts('electronics')">Electronics</button>
+      <button class="category-btn flex-shrink-0 px-md py-sm rounded-full border border-outline hover:border-primary transition-all duration-200 text-label-bold font-label-bold" onclick="filterProducts('exterior')">Exterior</button>
+      <button class="category-btn flex-shrink-0 px-md py-sm rounded-full border border-outline hover:border-primary transition-all duration-200 text-label-bold font-label-bold" onclick="filterProducts('protection')">Protection</button>
+    </div>
+    <!-- Product Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter" id="product-grid">
+      <div class="product-card" data-category="interior">
+        <div class="bg-surface-container-lowest rounded-xl overflow-hidden custom-shadow group transition-transform duration-300 hover:-translate-y-1 border border-outline-variant/10">
+          <div class="aspect-square relative overflow-hidden bg-surface-container-high"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO3oNgUKmIII3wX9RUSGv9Mx3zEahtokr3CrZiijnDf14bGdVNgDCz5r0rcxMxH7t4yp7avQfLsZ7OhGZ71O4eBZihPJsPJFxzoSyhbKtILabehZ0ondGqAKeDdSAdm7PvCFb2By-_aYQHIE_lVnuKdK3ePP-iaSD7dn1i2XDTVUeB5u0SsM3ErPVG1xnt1TENz3i7RnYlQw92mo1AtluhQCNRVHlXfJSBt41qK4s_IqlUjDltnxMm33JAm732UXc5QJ8D9rM6D6g"/></div>
+          <div class="p-md"><span class="text-label-bold text-secondary uppercase tracking-widest mb-xs block">Interior</span><h3 class="font-headline-md text-on-surface mb-sm">Premium Seat Covers</h3><div class="flex justify-between items-center"><span class="text-primary font-bold text-headline-md">₹14,999</span><a class="bg-primary-container text-on-primary-container px-md py-2 rounded-lg text-label-bold hover:opacity-90 active:scale-95 transition-all" href="#contact">Enquire Now</a></div></div>
+        </div>
+      </div>
+      <div class="product-card" data-category="interior">
+        <div class="bg-surface-container-lowest rounded-xl overflow-hidden custom-shadow group transition-transform duration-300 hover:-translate-y-1 border border-outline-variant/10">
+          <div class="aspect-square relative overflow-hidden bg-surface-container-high"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlFwcAu8xcYao6FbxPDe_05Y2sHh9K-dETMoQ7yoCFuKDP5VCw1FtLgbS6VXG5oj55YLGBZO145q9TRktxhWRE__yC5SdDt6hMY5LGT9pwQmxAJithHYRowL3XDzntxUXqC9F63ntIGQnYGEsABpkWbhyz4kKZmS0y5YoSAhbqJx0enDC54mK0VMMzwB17zsu_yxcIRD_4iqT2sl42hwZh9QOh5xnk-avnMeQ3_j5h9ntvcw-_6q9AaSc-P6JDU9tkiPOau0qY9r0"/></div>
+          <div class="p-md"><span class="text-label-bold text-secondary uppercase tracking-widest mb-xs block">Interior</span><h3 class="font-headline-md text-on-surface mb-sm">Sport Steering Cover</h3><div class="flex justify-between items-center"><span class="text-primary font-bold text-headline-md">₹2,499</span><a class="bg-primary-container text-on-primary-container px-md py-2 rounded-lg text-label-bold hover:opacity-90 active:scale-95 transition-all" href="#contact">Enquire Now</a></div></div>
+        </div>
+      </div>
+      <div class="product-card" data-category="electronics">
+        <div class="bg-surface-container-lowest rounded-xl overflow-hidden custom-shadow group transition-transform duration-300 hover:-translate-y-1 border border-outline-variant/10">
+          <div class="aspect-square relative overflow-hidden bg-surface-container-high"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFDgMfKD35d5BL8_hVrAaACISgMtvuDpXyE5Bw8LZeOpptLyxvUg4nfzZll7rwzBDCX5xttck3PuJwZvePV_pUfwo25H1FFzzevUut9pNougIJGKFaR8bOmQ49zglCrBdY9gXZhk-NWxcQ2m8gA1TxJXmixLpJCixQ0CEE0EwzpBuMHHcOg4WJGd8yzF4UN_JE0hH9BR-v39_Cu8RHdVpFlYLjPd-z9y6mTWDNEMwtTrMy7QggX__rwM_CYzZ9APjb9LG6LpkvM7k"/></div>
+          <div class="p-md"><span class="text-label-bold text-secondary uppercase tracking-widest mb-xs block">Electronics</span><h3 class="font-headline-md text-on-surface mb-sm">Android Pro Screen</h3><div class="flex justify-between items-center"><span class="text-primary font-bold text-headline-md">₹22,000</span><a class="bg-primary-container text-on-primary-container px-md py-2 rounded-lg text-label-bold hover:opacity-90 active:scale-95 transition-all" href="#contact">Enquire Now</a></div></div>
+        </div>
+      </div>
+      <div class="product-card" data-category="electronics">
+        <div class="bg-surface-container-lowest rounded-xl overflow-hidden custom-shadow group transition-transform duration-300 hover:-translate-y-1 border border-outline-variant/10">
+          <div class="aspect-square relative overflow-hidden bg-surface-container-high"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSCGdc-GE_3j-kp7xIZGQgzbkDR0kBXAr37isbpimf7nVnK7lE00IpCCX1XAjaM3BT_oBfEYQUiqs6ybVHAVvsLecWc2g0EqU3V259eko1IYlap2Gr50KvAObgUqUvVB1c6SOzyBVoYGMR5QMXvEMmR4PDh--S8aE71rtq-1CBFb4E7jMb2VQEIVyTd7ugJE0ZMiu7obXtgx_Jv3XD1OMJjv4Y4RJRPw2mHq5W08MaLELgFpQeB8_Ulm_A8Kp6hTTWBGUGFZtqRCs"/></div>
+          <div class="p-md"><span class="text-label-bold text-secondary uppercase tracking-widest mb-xs block">Electronics</span><h3 class="font-headline-md text-on-surface mb-sm">Ultra Dash Camera</h3><div class="flex justify-between items-center"><span class="text-primary font-bold text-headline-md">₹8,999</span><a class="bg-primary-container text-on-primary-container px-md py-2 rounded-lg text-label-bold hover:opacity-90 active:scale-95 transition-all" href="#contact">Enquire Now</a></div></div>
+        </div>
+      </div>
+      <div class="product-card" data-category="exterior">
+        <div class="bg-surface-container-lowest rounded-xl overflow-hidden custom-shadow group transition-transform duration-300 hover:-translate-y-1 border border-outline-variant/10">
+          <div class="aspect-square relative overflow-hidden bg-surface-container-high"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvT-T8ZGZY8UHmxbCz8cbwE4YsXKYBzGU0WwWe3FAwhbcC3BvNav34Rf5RlW4ypleXOtecPl8MMsN0T42bWyqDMr2R-ENt0GSsaRd2-HAQijtF__bnDBTWxjoGeaFiA84TQbx7M4Br4el6Y85ZLo626ZFKCQLc9swHWR-pkx0SeUnS4tJk7YG886j2bTc7OZYqjy2HontzDk8gb-MfYXU34qAozJzKpGjMakBmWjtxbMy-hyQAS-WCAKmObSjrZRltM2gEO9C34Qw"/></div>
+          <div class="p-md"><span class="text-label-bold text-secondary uppercase tracking-widest mb-xs block">Exterior</span><h3 class="font-headline-md text-on-surface mb-sm">Machined Alloys</h3><div class="flex justify-between items-center"><span class="text-primary font-bold text-headline-md">₹45,000</span><a class="bg-primary-container text-on-primary-container px-md py-2 rounded-lg text-label-bold hover:opacity-90 active:scale-95 transition-all" href="#contact">Enquire Now</a></div></div>
+        </div>
+      </div>
+      <div class="product-card" data-category="protection">
+        <div class="bg-surface-container-lowest rounded-xl overflow-hidden custom-shadow group transition-transform duration-300 hover:-translate-y-1 border border-outline-variant/10">
+          <div class="aspect-square relative overflow-hidden bg-surface-container-high"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe6rGy5-SuPSoibjErtZKEEsuV_PLWS5zmPRmOI-HcjxJ__7CRG0l-fUQf5tKM_O7S3bmjcDWjZ5K01msacpgaSbAwOt9Dqsvh76s7m6tFq4kw7ppRZmc4mSulTon67jYlN8A6NErjwh5R4mLM4k1peLbsNFRKAaKlcKg0ZPqQHgxog8OtLYepKlzR0qasucJ99hoCMBpBPt-quQrcrtuf9fJWuq-h-HqsAZN47GzabETGLSFEeYFKMc6feytGhKU8Br-NQHmLcs4"/></div>
+          <div class="p-md"><span class="text-label-bold text-secondary uppercase tracking-widest mb-xs block">Protection</span><h3 class="font-headline-md text-on-surface mb-sm">Ceramic Coating Kit</h3><div class="flex justify-between items-center"><span class="text-primary font-bold text-headline-md">₹12,500</span><a class="bg-primary-container text-on-primary-container px-md py-2 rounded-lg text-label-bold hover:opacity-90 active:scale-95 transition-all" href="#contact">Enquire Now</a></div></div>
+        </div>
+      </div>
+      <div class="product-card" data-category="interior">
+        <div class="bg-surface-container-lowest rounded-xl overflow-hidden custom-shadow group transition-transform duration-300 hover:-translate-y-1 border border-outline-variant/10">
+          <div class="aspect-square relative overflow-hidden bg-surface-container-high"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7e7MBb_1RFt-QStlI7Op_frU-qCHmV6KH6n2XS4XF6Z6PmnUp4ai1hW8xFaBReYfalA4j-s14bNV11_RavfDqi_f3_s5OSCmic12MQbdwK8wuBkePXxavBwz3fQSixRPAgGvduEojR3qfkIlAMHpjYI1tJkRiqQ49dTgyheVQ8HQMWNXnUnda5T0OOJmNEYZ3_PLOc5ZobDcRr0onRHVzYd1VkxzMR4We1upUco45w-ecU6gWse2JkR67xmi6MfzBIb2WdYrr5TY"/></div>
+          <div class="p-md"><span class="text-label-bold text-secondary uppercase tracking-widest mb-xs block">Interior</span><h3 class="font-headline-md text-on-surface mb-sm">Custom Fit Mats</h3><div class="flex justify-between items-center"><span class="text-primary font-bold text-headline-md">₹5,499</span><a class="bg-primary-container text-on-primary-container px-md py-2 rounded-lg text-label-bold hover:opacity-90 active:scale-95 transition-all" href="#contact">Enquire Now</a></div></div>
+        </div>
+      </div>
+      <div class="product-card" data-category="protection">
+        <div class="bg-surface-container-lowest rounded-xl overflow-hidden custom-shadow group transition-transform duration-300 hover:-translate-y-1 border border-outline-variant/10">
+          <div class="aspect-square relative overflow-hidden bg-surface-container-high"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRlHBf0_9PsO32RMUB4ptZ89Nc9ginqdIj9ISPyNVWikJIR-JNp0k7fU_iS7Bfd_iMPKVkmbhvRb7AqesGeC1uOUs92YcG2wIbqzNX0wobCSEcHKLdgUHkKbhJORFrUVUyTPs0-7C9b3qWnrKl-72AOkJr-mjNJFyKtK5nPUzEAHZEreEJDPY0SwwfjyaivSGX-E2ssVR6SMUqo1dp68xqZM60uQKnQslvb8flvX06pLdSFHRX3WRdm-5ndqLRQEEv6xJzqG-sAHk"/></div>
+          <div class="p-md"><span class="text-label-bold text-secondary uppercase tracking-widest mb-xs block">Protection</span><h3 class="font-headline-md text-on-surface mb-sm">Self-Healing PPF</h3><div class="flex justify-between items-center"><span class="text-primary font-bold text-headline-md">₹85,000</span><a class="bg-primary-container text-on-primary-container px-md py-2 rounded-lg text-label-bold hover:opacity-90 active:scale-95 transition-all" href="#contact">Enquire Now</a></div></div>
+        </div>
+      </div>
+    </div>
+    <!-- CTA Banner -->
+    <div class="mt-xl bg-inverse-surface rounded-xl p-lg md:p-xl flex flex-col md:flex-row justify-between items-center gap-md">
+      <div>
+        <h2 class="font-headline-lg text-surface mb-xs">Can't find what you're looking for?</h2>
+        <p class="text-secondary-fixed-dim text-body-lg">Our experts can help source specific accessories for your vehicle model.</p>
+      </div>
+      <a class="bg-primary-container text-on-primary-container px-xl py-md rounded-lg font-headline-md hover:scale-[1.02] transition-transform duration-300" href="#contact">Contact Sales Expert</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     SECTION: CONTACT
+================================================================ -->
+<section id="contact" class="bg-surface-container-low border-t border-outline-variant/10">
+  <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+    <!-- Storefront Image -->
+    <div class="mb-xl overflow-hidden rounded-xl relative h-[400px]">
+      <img alt="Autobot Kochi Storefront" class="w-full h-full object-cover" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzqmua6MiNNzq3cKU4wqaITxplHCEh0u-375MMnzV9W0xIp9z2zTFOtqqF0eSCI0OCH_1uXtnBwq-qArXtXFfxFou6rIHbjEpIrKr2EXVZr8XiZoOHIt9CCBrxYthnizGAUnBJwA12UGbnCeB_8Ro1jLKfeLQna7J-5i1N9RwW3ynpd2x-wWtK9zzgyxyUlB5glRpiEn9rRTqU0JWbOfhsbOjOszXRgvpZSj8aqROXunpwdfTt8-lJRGN0wjDmDaUm6dLxlwu2nzo"/>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-lg">
+        <div class="text-white">
+          <h2 class="text-display-lg font-display-lg mb-xs">Get in Touch</h2>
+          <p class="text-body-lg font-body-lg opacity-90 max-w-2xl">Experience automotive excellence at our flagship Kochi workshop. Our engineers are ready to help.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Form + Workshop Info -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+      <div class="lg:col-span-7 bg-surface-container-lowest p-lg rounded-xl shadow-sm">
+        <div class="mb-lg">
+          <h2 class="text-headline-lg font-headline-lg text-on-surface mb-xs">Send an Enquiry</h2>
+          <p class="text-body-md font-body-md text-secondary">Complete the form below and our service advisors will contact you shortly.</p>
+        </div>
+        <form class="space-y-md" id="enquiry-form">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+            <div class="space-y-xs"><label class="text-label-bold font-label-bold text-on-surface-variant">Full Name</label><input class="w-full h-[48px] px-md rounded border border-outline bg-white focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none" name="name" placeholder="John Doe" type="text"/></div>
+            <div class="space-y-xs"><label class="text-label-bold font-label-bold text-on-surface-variant">Phone Number</label><input class="w-full h-[48px] px-md rounded border border-outline bg-white focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none" name="phone" placeholder="+91 00000 00000" type="tel"/></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+            <div class="space-y-xs"><label class="text-label-bold font-label-bold text-on-surface-variant">Car Model</label><input class="w-full h-[48px] px-md rounded border border-outline bg-white focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none" name="car_model" placeholder="e.g. BMW M4" type="text"/></div>
+            <div class="space-y-xs"><label class="text-label-bold font-label-bold text-on-surface-variant">Service Required</label><select class="w-full h-[48px] px-md rounded border border-outline bg-white focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none appearance-none" name="service"><option>Periodic Maintenance</option><option>Engine Diagnostic</option><option>Body Shop &amp; Paint</option><option>Performance Tuning</option><option>Ceramic Coating</option></select></div>
+          </div>
+          <div class="space-y-xs"><label class="text-label-bold font-label-bold text-on-surface-variant">Your Message</label><textarea class="w-full p-md rounded border border-outline bg-white focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none" name="message" placeholder="How can we help you?" rows="4"></textarea></div>
+          <button class="w-full md:w-auto px-xl h-[48px] bg-primary-container text-on-primary font-label-bold uppercase tracking-widest rounded transition-all hover:opacity-95 active:scale-95" type="submit">Submit Enquiry</button>
+        </form>
+      </div>
+      <div class="lg:col-span-5 flex flex-col gap-lg">
+        <div class="bg-inverse-surface text-on-tertiary-container p-lg rounded-xl">
+          <h2 class="text-headline-md font-headline-md text-white mb-md">Visit Our Workshop</h2>
+          <div class="space-y-md">
+            <div class="flex items-start gap-md"><span class="material-symbols-outlined text-primary-fixed text-[24px]">location_on</span><div><p class="text-label-bold font-label-bold text-primary-fixed-dim uppercase mb-xs">Workshop Address</p><p class="text-body-md font-body-md text-white">Autobot Automotive, NH Bypass, Kochi, Kerala 682024</p></div></div>
+            <div class="flex items-start gap-md"><span class="material-symbols-outlined text-primary-fixed text-[24px]">call</span><div><p class="text-label-bold font-label-bold text-primary-fixed-dim uppercase mb-xs">Phone</p><a class="text-body-md font-body-md text-white hover:text-primary-fixed-dim transition-colors" href="tel:+918547028299">+91 85470 28299</a></div></div>
+            <div class="flex items-start gap-md"><span class="material-symbols-outlined text-primary-fixed text-[24px]">chat</span><div><p class="text-label-bold font-label-bold text-primary-fixed-dim uppercase mb-xs">WhatsApp</p><a class="text-body-md font-body-md text-white hover:text-primary-fixed-dim transition-colors" href="https://wa.me/918547028299">Message us on WhatsApp</a></div></div>
+            <div class="flex items-start gap-md"><span class="material-symbols-outlined text-primary-fixed text-[24px]">mail</span><div><p class="text-label-bold font-label-bold text-primary-fixed-dim uppercase mb-xs">Email</p><a class="text-body-md font-body-md text-white hover:text-primary-fixed-dim transition-colors" href="mailto:jaisondaniel6065@gmail.com">jaisondaniel6065@gmail.com</a></div></div>
+            <div class="flex items-start gap-md pt-md border-t border-white/10"><span class="material-symbols-outlined text-primary-fixed text-[24px]">schedule</span><div><p class="text-label-bold font-label-bold text-primary-fixed-dim uppercase mb-xs">Business Hours</p><p class="text-body-md font-body-md text-white">Monday - Saturday: 9 AM - 7 PM<br/>Sunday: Closed</p></div></div>
+          </div>
+        </div>
+        <div class="bg-surface-container-high border-l-4 border-primary p-md rounded-lg">
+          <p class="text-body-sm font-body-sm text-on-surface"><strong>Need Emergency Assistance?</strong> Our roadside recovery team is available 24/7 for premium members within the Kochi city limits.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Map -->
+    <div class="mt-xl w-full h-[500px] rounded-xl overflow-hidden shadow-sm">
+      <iframe src="https://maps.google.com/maps?q=NH+Bypass,+Kochi,+Kerala+682024,+India&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Autobot Workshop - NH Bypass, Kochi"></iframe>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="w-full rounded-t-lg bg-inverse-surface border-t border-white/10">
+  <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-xl grid grid-cols-1 md:grid-cols-4 gap-gutter">
+    <div class="flex flex-col gap-md">
+      <div class="text-headline-md font-headline-md text-surface uppercase">Autobot</div>
+      <p class="text-body-sm text-secondary-fixed-dim">Premium automotive solutions for discerning car owners. Experience excellence in every service.</p>
+    </div>
+    <div class="flex flex-col gap-sm">
+      <h4 class="text-label-bold font-label-bold text-white uppercase mb-sm">Contact Us</h4>
+      <a class="text-body-sm text-secondary-fixed-dim hover:text-white transition-colors" href="#contact">Workshop Address: Kochi, Kerala</a>
+      <a class="text-body-sm text-secondary-fixed-dim hover:text-white transition-colors" href="tel:+918547028299">Phone: +91 85470 28299</a>
+      <a class="text-body-sm text-secondary-fixed-dim hover:text-white transition-colors" href="https://wa.me/918547028299">WhatsApp</a>
+      <a class="text-body-sm text-secondary-fixed-dim hover:text-white transition-colors" href="mailto:jaisondaniel6065@gmail.com">Email: jaisondaniel6065@gmail.com</a>
+    </div>
+    <div class="flex flex-col gap-sm">
+      <h4 class="text-label-bold font-label-bold text-white uppercase mb-sm">Business Hours</h4>
+      <span class="text-body-sm text-secondary-fixed-dim">Mon - Sat: 9 AM - 7 PM</span>
+      <span class="text-body-sm text-secondary-fixed-dim">Sunday: Closed</span>
+    </div>
+    <div class="flex flex-col gap-sm">
+      <h4 class="text-label-bold font-label-bold text-white uppercase mb-sm">Quick Links</h4>
+      <a class="text-body-sm text-secondary-fixed-dim hover:text-white transition-colors" href="#services">Our Services</a>
+      <a class="text-body-sm text-secondary-fixed-dim hover:text-white transition-colors" href="../privacy_policy/code.html">Privacy Policy</a>
+      <a class="text-body-sm text-secondary-fixed-dim hover:text-white transition-colors" href="../terms_of_service/code.html">Terms of Service</a>
+      <a class="text-body-sm text-secondary-fixed-dim hover:text-white transition-colors" href="#contact">Book Online</a>
+    </div>
+  </div>
+  <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-md border-t border-white/5 text-center md:text-left">
+    <p class="text-label-bold font-label-bold text-secondary-fixed-dim">© 2024 Autobot Automotive. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- WhatsApp FAB -->
+<a class="fixed bottom-margin-mobile right-margin-mobile md:bottom-md md:right-md z-50 w-14 h-14 bg-green-600 text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform duration-300" href="https://wa.me/918547028299">
+  <span class="material-symbols-outlined text-[32px]">chat</span>
+</a>
+
+<script>
+  // Mobile menu open/close
+  document.getElementById('menu-toggle').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  });
+  document.getElementById('menu-close').addEventListener('click', closeMobileMenu);
+  function closeMobileMenu() {
+    document.getElementById('mobile-menu').classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  // Close mobile menu when any nav link is clicked
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+
+  // Active nav highlighting on scroll
+  const sectionIds = ['home', 'services', 'products', 'contact'];
+  const navMap = {
+    home: document.getElementById('nav-home'),
+    services: document.getElementById('nav-services'),
+    products: document.getElementById('nav-products'),
+    contact: document.getElementById('nav-contact'),
+  };
+
+  function setActiveNav(id) {
+    Object.entries(navMap).forEach(([key, link]) => {
+      if (!link) return;
+      if (key === id) {
+        link.classList.add('text-primary', 'border-b-2', 'border-primary', 'pb-1');
+        link.classList.remove('text-secondary', 'hover:text-primary');
+      } else {
+        link.classList.remove('text-primary', 'border-b-2', 'border-primary', 'pb-1');
+        link.classList.add('text-secondary', 'hover:text-primary');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY + 100;
+    let current = 'home';
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollY) current = id;
+    });
+    setActiveNav(current);
+  }, { passive: true });
+
+  // Product category filter
+  function filterProducts(category) {
+    const cards = document.querySelectorAll('.product-card');
+    const buttons = document.querySelectorAll('.category-btn');
+    buttons.forEach(btn => {
+      btn.classList.remove('active-filter');
+      const label = btn.innerText.toLowerCase().trim();
+      if (category === 'all' ? label === 'all products' : label === category) {
+        btn.classList.add('active-filter');
+      }
+    });
+    cards.forEach(card => {
+      const cat = card.getAttribute('data-category');
+      if (category === 'all' || cat === category) {
+        card.style.display = 'block';
+        card.style.opacity = '0';
+        setTimeout(() => { card.style.opacity = '1'; card.style.transition = 'opacity 300ms ease'; }, 50);
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Enquiry form → WhatsApp
+  document.getElementById('enquiry-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = new FormData(this);
+    const name = data.get('name') || 'Not provided';
+    const phone = data.get('phone') || 'Not provided';
+    const car = data.get('car_model') || 'Not provided';
+    const service = data.get('service') || 'Not provided';
+    const msg = data.get('message') || '';
+    const text = `Hello Autobot!\n\nNew Enquiry:\nName: ${name}\nPhone: ${phone}\nCar Model: ${car}\nService Required: ${service}\nMessage: ${msg}`;
+    window.open(`https://wa.me/918547028299?text=${encodeURIComponent(text)}`, '_blank');
+  });
+
+  // Button micro-interactions
+  document.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('mousedown', () => btn.classList.add('scale-[0.98]'));
+    btn.addEventListener('mouseup', () => btn.classList.remove('scale-[0.98]'));
+    btn.addEventListener('mouseleave', () => btn.classList.remove('scale-[0.98]'));
+  });
+
+  // Service card lift on hover
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('mouseenter', () => card.style.transform = 'translateY(-8px)');
+    card.addEventListener('mouseleave', () => card.style.transform = 'translateY(0)');
+  });
+</script>
+</body>
+</html>

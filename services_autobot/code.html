@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Autobot | Premium Automotive Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#f5f5f4",
+                    "tertiary": "#575858",
+                    "on-primary-fixed": "#410007",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#5c403f",
+                    "on-primary-container": "#fff2f1",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#e8e8e8",
+                    "on-primary-fixed-variant": "#92001b",
+                    "background": "#f9f9f9",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "inverse-primary": "#ffb3b1",
+                    "primary-fixed": "#ffdad8",
+                    "on-surface": "#1a1c1c",
+                    "surface-container-highest": "#e2e2e2",
+                    "surface": "#f9f9f9",
+                    "primary-container": "#d72638",
+                    "secondary": "#5f5e5e",
+                    "primary": "#b20024",
+                    "surface-bright": "#f9f9f9",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#e4bdbb",
+                    "surface-tint": "#bd0b29",
+                    "outline": "#906f6e",
+                    "tertiary-fixed": "#e3e2e2",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#464747",
+                    "secondary-fixed": "#e5e2e1",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "surface-dim": "#dadada",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#6f7070",
+                    "on-background": "#1a1c1c",
+                    "inverse-on-surface": "#f1f1f1",
+                    "secondary-container": "#e2dfde",
+                    "primary-fixed-dim": "#ffb3b1",
+                    "surface-container": "#eeeeee",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#474746",
+                    "on-secondary-container": "#636262",
+                    "surface-container-low": "#f3f3f3",
+                    "inverse-surface": "#2f3131",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#e2e2e2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "xs": "4px",
+                    "margin-desktop": "64px",
+                    "lg": "48px",
+                    "gutter": "24px",
+                    "xl": "80px",
+                    "sm": "12px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Montserrat"],
+                    "body-sm": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "label-bold": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .service-card:hover .service-image {
+            transform: scale(1.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d72638;
+        }
+        html { scroll-behavior: smooth; overflow-y: auto; overflow-x: hidden; }
+        body { min-height: 100%; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 w-full z-50 bg-surface/95 backdrop-blur-md shadow-sm border-b border-outline-variant/20">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop flex justify-between items-center h-[80px]">
+<div class="text-headline-md font-headline-md tracking-tight text-on-surface uppercase">
+                Autobot
+            </div>
+<nav class="hidden md:flex gap-md items-center">
+<a class="text-label-bold font-label-bold text-secondary hover:text-primary transition-colors duration-200" href="../home_autobot_with_founder/code.html#home">Home</a>
+<a class="text-label-bold font-label-bold text-primary border-b-2 border-primary pb-1" href="../home_autobot_with_founder/code.html#services">Services</a>
+<a class="text-label-bold font-label-bold text-secondary hover:text-primary transition-colors duration-200" href="../home_autobot_with_founder/code.html#products">Products</a>
+<a class="text-label-bold font-label-bold text-secondary hover:text-primary transition-colors duration-200" href="../home_autobot_with_founder/code.html#contact">Contact</a>
+</nav>
+<a class="hidden md:inline-block bg-primary-container text-on-primary px-lg py-sm rounded-lg font-label-bold uppercase tracking-wider hover:opacity-90 active:scale-[0.98] transition-all duration-300" href="../contact_autobot/code.html">
+                Book Appointment
+            </a>
+<button class="md:hidden flex items-center justify-center w-10 h-10 text-on-surface" id="menu-toggle" aria-label="Open menu">
+<span class="material-symbols-outlined text-[28px]">menu</span>
+</button>
+</div>
+</header>
+<!-- Mobile Menu Overlay -->
+<div class="hidden fixed inset-0 z-50 bg-surface flex flex-col" id="mobile-menu">
+<div class="flex justify-between items-center px-margin-mobile h-[80px] border-b border-outline-variant/20">
+<span class="text-headline-md font-headline-md uppercase text-on-surface">Autobot</span>
+<button class="w-10 h-10 flex items-center justify-center" id="menu-close" aria-label="Close menu">
+<span class="material-symbols-outlined text-[28px]">close</span>
+</button>
+</div>
+<nav class="flex flex-col items-center justify-center flex-1 gap-xl">
+<a class="text-headline-lg font-headline-lg text-secondary hover:text-primary transition-colors" href="../home_autobot_with_founder/code.html#home">Home</a>
+<a class="text-headline-lg font-headline-lg text-primary" href="../home_autobot_with_founder/code.html#services">Services</a>
+<a class="text-headline-lg font-headline-lg text-secondary hover:text-primary transition-colors" href="../home_autobot_with_founder/code.html#products">Products</a>
+<a class="text-headline-lg font-headline-lg text-secondary hover:text-primary transition-colors" href="../home_autobot_with_founder/code.html#contact">Contact</a>
+</nav>
+<div class="px-margin-mobile pb-xl">
+<a class="block w-full bg-primary-container text-on-primary font-label-bold text-label-bold px-md py-sm rounded-lg hover:opacity-90 text-center" href="../contact_autobot/code.html">Book Appointment</a>
+</div>
+</div>
+<main class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Hero Section -->
+<section class="mb-xl text-center md:text-left">
+<h1 class="font-headline-lg text-headline-lg md:text-display-lg text-on-surface mb-md max-w-3xl leading-tight">
+                Premium Automotive Services
+            </h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl mb-lg">
+                From high-tech electronics to professional protection, we offer expert installation for all car makes with precision and engineering excellence.
+            </p>
+<div class="h-1 w-24 bg-primary-container"></div>
+</section>
+<!-- Services Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
+<!-- Service Cards Loop -->
+<!-- 1. Android Screen -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="Android Screen Installation" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="An ultra-realistic close-up shot of a professional technician in a clean black and red uniform installing a high-definition Android infotainment system into a modern Indian SUV dashboard. The lighting is bright and clinical, highlighting the precision of the electrical work. The overall mood is sophisticated, corporate, and trustworthy, with a focus on high-end automotive technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoMy1CPVZD0r8OebMM6JyDRuhPBU-Urp4IOsUGcnqObMsQ0oLH97djIqqkhYmCL1LxEIHBJPQ4GvjIFjgNrGUiOmYN_QP74-qcjoASjEorVYD4NP4eTe3yvqve606dYA9mXeuYp5elaWSqj18TbQXus1tjbrKNGCTQnvV_7n_6r2MN814zxmJZoynXb1e7ZXG3THc6yky1Fj7Diw-0gjOUiNWPDNxrA_U3UovshztcWHV8e3k9dmueZQ7l0G809TRti-90ceuate8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="tablet_android">tablet_android</span>
+<span class="font-label-bold text-label-bold uppercase">Electronics</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Android Screen</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">High-performance responsive touch interfaces for seamless vehicle integration.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+<!-- 2. Apple CarPlay -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="Apple CarPlay Setup" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="A professional automotive engineer in a clean workshop setting configuring a premium wireless Apple CarPlay interface in a high-end luxury sedan. The scene is shot with a shallow depth of field, using high-key studio lighting that emphasizes the clean lines of the car's interior and the technician's expert handling. The aesthetic is modern and editorial, reflecting high-trust transactions." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlgxIoEbpOEz4Zf2R2zuDvEToekclv-s8Gsk2M9LE6LpNW1UvekFdBDE4ZMXBGacUpYqSAwH7evWmlFVJyhDnHMvzjWFJnlMN40j9DsLSYxlWoUFWkAAj5vV-YPrzWEc2-xUqImtgR_c0pnD0XfIjukREzMRufVqu8O09sky2ggFi1hAJ8W8aqTwaYRIKfRrfV8TwSMi083Pjx6OayQhud6zqJwBmbm6OK9X_sh48eh8vF5rz7Y4Nb48-PteKjyyrZHEFEy5bggHE"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="smartphone">smartphone</span>
+<span class="font-label-bold text-label-bold uppercase">Connectivity</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Apple CarPlay</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Wireless and wired smartphone integration for your premium drive.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+<!-- 3. Reverse Camera -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="Reverse Camera Installation" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="A sharp, DSLR-quality image of a mechanic installing a wide-angle reverse camera on the rear of a pristine white hatchback. The workshop is immaculate with silver and dark charcoal tones. The lighting is crisp and cool, showcasing the technical precision involved in the wiring process. The overall vibe is one of engineering excellence and professional automotive care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzaGyatkaRuTOBezIIMoyZ-877W97S0_BA9jyXi3FGnAa7yMy-B4qlmZw9SSz2qF0U8kwDQbe-dlleyIopzz76WeY5YZLfZPZYIQTXKTqkRGzFIjemSYuSXYn-N_49QaK3J_ZfbvAgk53tH-VwkJk-KQ2pFv6dGwZ5N6o10e1AJ7Rfe1UfxbiEyF6v5IFKXn1ob22vGM30V2h_iU6q3SMgR2Y6_upcD8WJ833Tkdbj6FeKRKiP70F1YEwBdIWh7kvLBWTAx_dvC4s"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings_backup_restore">settings_backup_restore</span>
+<span class="font-label-bold text-label-bold uppercase">Safety</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Reverse Camera</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Crystal clear rearview visibility with dynamic parking assistance lines.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+<!-- 4. 360 Camera -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="360 Camera System" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="An editorial style photograph of multiple camera sensors being expertly integrated into the wing mirrors and front grille of a luxury SUV by a technician in a branded Autobot uniform. The scene is lit with sophisticated ambient light, using a palette of silver, black, and subtle red accents. The focus is sharp on the technical components, conveying high-end engineering quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6Zm9t6dokuxP4axCmERd5zvbhS79bynEYKwgdSHSpgRaYftbfinowSpJWLO8iAhyOS5LtLRDuMxyAzQ31uOk3x-CYE1s7S-ZnrGDkgzkXq0VwFoILPDE63snTfHmkWHpG6TnewWHmo_eX35-bCtWEwcZVge5U08gc-iEwWYRvBYVYfpUkeGWo0663uCSJc04GgW9BisdIwMTglA3XJu7fi9kcDdX5fgQWBbwM3F22vCZjnbe9YC7Sa0HYmAozmmfMjCAsr-0YNMA"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="videocam">videocam</span>
+<span class="font-label-bold text-label-bold uppercase">Assistance</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">360 Camera</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Complete bird's-eye view monitoring for confident urban maneuvering.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+<!-- 5. Dash Cam -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="Dash Cam Installation" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="A detailed shot of a sleek 4K dash camera being mounted behind the rearview mirror by a skilled technician. The interior of the car is spotless and modern. Soft natural light streams through the windshield, creating a bright gallery-like aesthetic. The technician's hands are visible, demonstrating precise cable management and professional installation techniques." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWvqD8izF6iddA6bMejwN5unXeZRFMQWsaNcYAwhvABsDN6_mVkt2d3aOLOcPGt0ZIQPhA_BpnK1NI-VR28MeWgjH8Jm9CwfQBL0lqXpcdsw21CiNbvPXS0qdmnf1PEpRn7wy2J5C3EAHEy-IMKzlsFbi4E8PM2qXNYB-bpF2XR0HPM3Wuro8JYKETiE5SSOCMgTHLwo0ekZCYODnh8q4VVgVlk5XQ1sUhZSWTNRrUpXN6gHYDAZdcgg6Cf5rOoAoUoC0r8n5ccfo"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="emergency_recording">emergency_recording</span>
+<span class="font-label-bold text-label-bold uppercase">Security</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Dash Cam</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Reliable recording systems with 24/7 parking mode monitoring.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+<!-- 6. GPS Tracker -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="GPS Tracker" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="A high-contrast photo of a technician performing a hidden GPS tracker installation within the internal wiring harness of a vehicle. The lighting is focused and dramatic, highlighting the 'machined' look of the car's electronics. The scene uses a professional palette of dark charcoal and silver, reflecting a high-trust, premium security service environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFkyv0LrMMUI3WxmPdCdNdFvQoacGXymZUEE4ypiJ7Thn9KLkB97Q3dv2HHQ4ySvYwvvIFapdCS1K4byqMhWSDLgb5PWH85pQWQOznk40f-aLV1Ig8SEmd17824u3gsicYBg8H6rExVCDUzlOfPCYc7yPyupRA9Tjug0viQMPaHQePMAqOSZ5KY84kqdWGouk-Pln8UFm_TBWmBhy-pPVbVwI9wZQIdIWxwc7pKLmuEqC-dYLGE5BktFnC34SAEeHYaLDLpDIlQX4"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="location_on">location_on</span>
+<span class="font-label-bold text-label-bold uppercase">Protection</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">GPS Tracker</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Real-time location tracking with geofencing and anti-theft alerts.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+<!-- 7. Parking Sensors -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="Parking Sensors" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="Professional technician carefully drilling and mounting flush-fit ultrasonic parking sensors onto the bumper of a luxury car. The environment is a clean, bright automotive studio with silver tools and organized workstations. The image is crisp and editorial, showcasing the meticulous detail required for a factory-standard finish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN3R4Er7F74mt054YwKYlZO4d2mzvXi67KTxliI3J8r9VJ2xz3r4PGGhg_L5hblweFMv2pEuyu19ximrvF3ADdzkcu_kzuJL4on3uwUcWGFfi_b2yV1QroBjGlTPJQ8mkKTOiAo7-Qe_ZGTxycJ3KN5j6GHIweCLMwqR_qpL7KydIFJGm3V340ZOryyTBaUOFeupettPI3wxo4VZTA_YgBYnyIgeATEauAf3x6CcWzZPnZI197Ni-79lLx2uUl9WvgtWTwN9rcOvc"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="sensor_occupied">sensor_occupied</span>
+<span class="font-label-bold text-label-bold uppercase">Utility</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Parking Sensors</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Precision proximity sensors for effortless parking in any space.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+<!-- 8. Car Audio -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="Car Audio Upgrade" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="A sophisticated shot of a technician installing high-end component speakers into a car door. The lighting is dramatic and warm, focusing on the quality materials of the audio equipment. The workshop is clean and corporate, avoiding messy tropes. The aesthetic is tactile and expensive, highlighting the engineering excellence of the audio setup." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWtz13k94jMis4rnp0oDEjutuQDkoIrkbaReNazmKmW1spUqgL8VnPVNGnaTiv3DHeRvovRGx8R_OUrOEMd2d1bWg9iGwt1QjuKj52h7T1YpbOYjuM0q3BK0IJZO42nN2DEzma1wLmBNm96HaN6dSJ3fAsLaUif75CkmOi-3b3z3b5TU2TKuJfM_c3iENGXjVt9z9EtaTqp74wDUJBGrGzkI4GyNRyzvXL3Gnz959jvfr9ccXb5mLshXSgnYK-xCwfgzC1zNP3bpk"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="speaker">speaker</span>
+<span class="font-label-bold text-label-bold uppercase">Sound</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Car Audio</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Audiophile-grade speaker upgrades and professional sound tuning.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+<!-- 9. Subwoofer -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="Subwoofer Installation" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="Expert technician fitting a custom-built subwoofer enclosure in the trunk of a luxury car. The scene is well-lit with professional studio lighting, showing the clean wiring and substantial feel of the audio components. The mood is focused and technical, with a focus on the premium quality and heavy tactile nature of the installation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0j9Gnpj-i2JoMVqstwFk_ndexmNMM-qnsV_eWVV-7HgJX0qOUuzikg6iUXJyh_lptAAHCT16_rxaSKRKb_Y1KgbHgt91MxLwRKF3AQL4Omb2zL5HqDwGj_7kCR0nHO3LoAeoseW7BujG2G_QwMczbG1qLFnS100d5T6IS8PxPKlYtrvIH3lxZkeGrzOCq1wLun4Mxvn4zXW9sXnwrGjEi4xPgSvpT7J1UEEO7KnNxdJ9BTbtxeWkYkMt-BtnBxIFVGkkaf2cd_o8"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="volume_up">volume_up</span>
+<span class="font-label-bold text-label-bold uppercase">Bass</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Subwoofer</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Deep, rich bass enhancement with space-saving custom enclosures.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+<!-- 10. Ambient Lighting -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="Ambient Lighting" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="A breathtaking night-time interior shot of a car featuring multi-color LED ambient lighting strips installed along the dash and doors. A technician is seen adjusting the colors via a smartphone app. The image captures a high-end luxury feel, with soft glows reflecting off leather surfaces. The visual style is modern, editorial, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdUsGEeQim1QTEYT5SSk8Dw9Fr4LRE7-4WqN57sN62fqMl2iVNpaHEkMvzf50i15_CMR79l6QjrUshPy5cOFHZcAMQMdkmBomUUFFXkrYrPol3obx1S7QN0bwUG4fb2koHYAqvmav7-FFBHnqlqa5cdWiAFW9aC7KOYp38OPO17CHOUiFr8CyvM1ZCkraxWXInPi5qPXPjcSkA-AyoCZQqNa3CxJHV3HUckUP_fBzHuSBkXpc-zAb8MJW2aD3QDI55INf6xCYV3l4"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="light_mode">light_mode</span>
+<span class="font-label-bold text-label-bold uppercase">Aesthetic</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Ambient Lighting</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Multi-zone app-controlled LED accents to enhance interior mood.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+<!-- 11. Leather Seat Covers -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="Leather Seat Covers" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="A tactile, close-up shot of premium Napa leather seat covers being expertly fitted. The lighting is warm and directional, emphasizing the rich texture and precision stitching of the leather. The workshop background is clean and clinical, suggesting a high-trust, premium environment. The aesthetic is that of a high-end automotive journal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtI5azQ-52rtfokhI1ZXfMJcAA1NbjMdNTFotIWW-3IdAAiOvVO20iwygzdbVrTqqrE0AoiukynrdRgvsshQwR3ae89mj6AqY5DaOKjgqDN8uBDMLWt20iO900uahgV1Yu-BzbIgBBl_3TpJnPS72Yi4HUZxy9Op-6_gaNcL8hQzVYgY4CDm9WTahz7XriWbCYI5SgyHavXy6xd8hCK-qh5rrOk_vpWYfbrOynFPhwDQATn3lC8D6dFSRTUVCuS5U9ZncCcr-j7pM"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="chair">chair</span>
+<span class="font-label-bold text-label-bold uppercase">Luxury</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Leather Seat Covers</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Custom-stitched premium leather and leatherette seat transformations.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+<!-- 12. Steering Cover -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="Steering Cover" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="A detailed shot of a professional artisan hand-stitching a bespoke leather steering wheel cover. The lighting is focused and bright, capturing the fine needlework and the high-quality silver and red stitching. The car's interior is spotless, reflecting a high-trust, expert craftsmanship service. The overall image feels substantial and expensive." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1UzFy-yeQ2kaSETTKU79sCPGLbF-krnnseXEx-jsXmDivswkvZ_JjQrutl9IUSmYK4PeCIvcAABQm5BpMFR7d1dRGNxrij4ZGOTvecJuYU1XpVQk_DgDbYyGpT_g3yDOKHPpiIFtyC6LuRVi8wOjEwGre50QNZ7AB9CneMFjI8omqTzpjJlfr7hGUQuBY9Yr6XnJInasjX0lcEUzQQf2tpvJGehTCMUAw1MPGn9567sFJBNdtuBB1PI-2578AnzF_E0A10TSuX9A"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="trip_origin">trip_origin</span>
+<span class="font-label-bold text-label-bold uppercase">Detail</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Steering Cover</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Hand-stitched leather steering covers for ultimate grip and comfort.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+<!-- 13. Ceramic Coating -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="Ceramic Coating" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="An ultra-glossy shot of a luxury black car reflecting the bright studio lights of a professional detailing bay. A technician is seen applying a ceramic coating layer with a small applicator. The scene is pristine, clinical, and high-tech, emphasizing the protective qualities and engineering excellence of the coating. The mood is professional and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwN2HYIIIdt0ZcwqyDwpuqXLuBVd4skt_7XXgVauemRit6rzk_WYLMLG07EtiTOWfwL9KZ1Byx0ImxyjLDFRWWz06ozY7vcbHoMddBFfJpOu1kTGRJE_AEeBrbZ8yULWxiGrV9cG66J-v13622iHxI4AGwo9vgnMYnANDHX8_SLj1sAuwzwFYYp1S4UbY_Om_axFKReRanaJyiIlsHoMUk-48U21PH83IE8Ulx5PLfVUcjTqe8m8SzwZ5AfIVuvXufrQ_7nSW0fhs"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="auto_fix_high">auto_fix_high</span>
+<span class="font-label-bold text-label-bold uppercase">Protection</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Ceramic Coating</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Nano-ceramic technology for mirror-like shine and 9H hardness protection.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+<!-- 14. PPF (Paint Protection Film) -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="PPF Installation" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="A clean, editorial photograph of high-gloss paint protection film being meticulously applied to a supercar hood. The technician uses a squeegee to remove water, with professional lighting highlighting the film's clarity. The workshop is organized and modern, with a focus on precision and reliability. The aesthetic is clean, grounded, and expensive." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn7TJSI_pQ0ATHGYK4C22npDOcXtQaNb9i5yarYz49lSgO6OWwkYa6KLLIue2X_1PPv7AwyTYDzDuBpe_4JEYfeatQyq2BNWuMsBW0e4-8mgvgQLtDgf7nCCaWou1jHHFZ-O3CDg4Jplue2fQKKX97P0k1Dmwn50AGlBQPjwRqt6_yC565yVaFFm0dSKY0BHWPGT9ofGu9tSsiJrruqLO0miCpMmdqQOP-bRX13Ty8zoAtMi3FKxR2621zDlmPJGQE91Sc_ahMwJw"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="shield">shield</span>
+<span class="font-label-bold text-label-bold uppercase">Defense</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">PPF</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Self-healing TPU film to guard against stone chips and scratches.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+<!-- 15. Car Detailing -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="Car Detailing" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="A professional detailer using a high-end buffer machine on a red premium sedan. The studio lighting is bright and overhead, creating clean highlights on the car's body. The scene emphasizes precision and care, with a clean workshop and silver tools. The overall style is editorial and automotive-focused, reflecting expert quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1GFBFbevyBdSqYBmq_CiIIxt9Uee2_Ns174HPbcJoRnabCPVl_r2dcavEjel3a_ADFFoQbFyICuBJlY-PJLszkYA5hm3LTkCx5QS8wTw7wk_oUO9O5Hwv99KVd_Yh6tUaYAJDL-9snTgfWnAKP5ITwHYn3dMVQRtssCpqD_mz9He3Xdrk8vEdRaiwdovSqph4gqd_YOvSZvaxbBuP7YBNAw_WaRJGqTCQvxfvYtdJbgJ1oFz2pHJjE9GC3dTK1Qi_kPsVIUpCaBM"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="cleaning_services">cleaning_services</span>
+<span class="font-label-bold text-label-bold uppercase">Restoration</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Car Detailing</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Comprehensive interior and exterior restoration for a showroom finish.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+<!-- 16. Interior Customization -->
+<div class="service-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="Interior Customization" class="service-image w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="A wide-angle shot of a car's interior undergoing a complete custom overhaul, including carbon fiber inserts and personalized color themes. The workshop is pristine and modern, with technicians working on different parts of the cabin. The lighting is high-key and professional, highlighting the high-trust, bespoke nature of the customization service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv8XHUV2SH9Vqs71zkpEZ1gM_eu_sT5BOtG80zIjXmX-n2x90HVr_vNAw8vAEKP5fBc0nw1cAsY-AaajMAWqi1EDaAwCNHKz9BtutAKMzjaURKLkd4FF45cCyWkajfUxTyHr_3FNYKl2nFLDdBqQiJazHfVTdZYii6mZnya-ISAdDrocELJdzDavcImjQ231k2N6oalB-7VBWgMWNfD_agmbfV-rPJMVUXfOoBsYBtfBYguq5u9sk74Y8JS8Bob-HlFFk2Onz4hfY"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-primary-container mb-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard_customize">dashboard_customize</span>
+<span class="font-label-bold text-label-bold uppercase">Bespoke</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Interior Customization</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-md line-clamp-2">Full cabin transformations including trim painting and soft-touch updates.</p>
+<div class="mt-auto">
+<a class="w-full h-[48px] bg-primary-container text-on-primary font-label-bold uppercase rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center" href="../contact_autobot/code.html">Book Service</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full rounded-t-lg bg-inverse-surface border-t border-white/10 mt-xl">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-xl grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="space-y-md">
+<div class="text-headline-md font-headline-md text-surface">
+                    Autobot
+                </div>
+<p class="text-body-sm font-body-sm text-secondary-fixed-dim max-w-xs">
+                    Redefining the automotive service experience with engineering excellence and precision.
+                </p>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="text-label-bold font-label-bold text-primary mb-xs">Services</span>
+<a class="text-body-sm font-body-sm text-secondary-fixed-dim hover:text-white transition-colors" href="./code.html">Infotainment Systems</a>
+<a class="text-body-sm font-body-sm text-secondary-fixed-dim hover:text-white transition-colors" href="./code.html">Safety &amp; Security</a>
+<a class="text-body-sm font-body-sm text-secondary-fixed-dim hover:text-white transition-colors" href="./code.html">Premium Audio</a>
+<a class="text-body-sm font-body-sm text-secondary-fixed-dim hover:text-white transition-colors" href="./code.html">Paint Protection</a>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="text-label-bold font-label-bold text-primary mb-xs">Contact Us</span>
+<p class="text-body-sm font-body-sm text-secondary-fixed-dim">Workshop Address: Kochi, Kerala</p>
+<p class="text-body-sm font-body-sm text-secondary-fixed-dim">Phone: +91 85470 28299</p>
+<p class="text-body-sm font-body-sm text-secondary-fixed-dim">WhatsApp</p>
+<p class="text-body-sm font-body-sm text-secondary-fixed-dim">Email: jaisondaniel6065@gmail.com</p>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="text-label-bold font-label-bold text-primary mb-xs">Business Hours</span>
+<p class="text-body-sm font-body-sm text-secondary-fixed-dim">Monday - Saturday: 9 AM - 7 PM</p>
+<p class="text-body-sm font-body-sm text-secondary-fixed-dim">Sunday: Closed</p>
+<div class="flex gap-sm mt-md">
+<span class="material-symbols-outlined text-secondary-fixed-dim cursor-pointer hover:text-primary transition-colors" data-icon="facebook">face_nod</span>
+<span class="material-symbols-outlined text-secondary-fixed-dim cursor-pointer hover:text-primary transition-colors" data-icon="camera">camera</span>
+<span class="material-symbols-outlined text-secondary-fixed-dim cursor-pointer hover:text-primary transition-colors" data-icon="play_circle">play_circle</span>
+</div>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto px-margin-desktop py-md border-t border-white/5">
+<p class="text-label-bold font-label-bold text-secondary-fixed-dim text-center md:text-left">
+                © 2024 Autobot Automotive. All Rights Reserved.
+            </p>
+</div>
+</footer>
+<script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        document.getElementById('menu-close').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>
