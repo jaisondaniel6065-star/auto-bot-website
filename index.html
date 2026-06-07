@@ -63,6 +63,40 @@
   *, *::before, *::after { box-sizing: border-box; }
   img, video, iframe { max-width: 100%; height: auto; }
 
+  /* ===== MOBILE NAV: explicit header and menu layout ===== */
+  @media (max-width: 767px) {
+    /* Header bar — logo left, hamburger right */
+    header > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    /* Mobile menu top bar — brand left, close right */
+    #mobile-menu > div:first-child {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    /* Menu items — comfortable tap targets, clear spacing */
+    #mobile-menu nav a {
+      font-size: 17px !important;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      padding-top: 14px !important;
+      padding-bottom: 14px !important;
+      width: 100%;
+      text-align: center;
+      display: block;
+    }
+    #mobile-menu nav {
+      gap: 4px !important;
+    }
+  }
+
   /* ===== MOBILE OPTIMIZATIONS (≤767px) ===== */
   @media (max-width: 767px) {
     html, body { overflow-x: hidden; }
@@ -118,11 +152,11 @@
       <span class="material-symbols-outlined text-[28px]">close</span>
     </button>
   </div>
-  <nav class="flex flex-col items-center justify-center flex-1 gap-[10px]">
-    <a class="mobile-nav-link text-[18px] font-semibold tracking-wide text-primary py-[10px] px-[24px] w-full text-center" href="#home">Home</a>
-    <a class="mobile-nav-link text-[18px] font-semibold tracking-wide text-secondary hover:text-primary transition-colors py-[10px] px-[24px] w-full text-center" href="#services">Services</a>
-    <a class="mobile-nav-link text-[18px] font-semibold tracking-wide text-secondary hover:text-primary transition-colors py-[10px] px-[24px] w-full text-center" href="#products">Products</a>
-    <a class="mobile-nav-link text-[18px] font-semibold tracking-wide text-secondary hover:text-primary transition-colors py-[10px] px-[24px] w-full text-center" href="#contact">Contact</a>
+  <nav class="flex flex-col items-center justify-center flex-1">
+    <a class="mobile-nav-link text-primary" href="#home">Home</a>
+    <a class="mobile-nav-link text-secondary hover:text-primary transition-colors" href="#services">Services</a>
+    <a class="mobile-nav-link text-secondary hover:text-primary transition-colors" href="#products">Products</a>
+    <a class="mobile-nav-link text-secondary hover:text-primary transition-colors" href="#contact">Contact</a>
   </nav>
   <div class="px-margin-mobile pb-xl">
     <a class="mobile-nav-link block w-full bg-primary-container text-on-primary font-label-bold text-label-bold px-md py-sm rounded-lg hover:opacity-90 text-center" href="#contact">Book Appointment</a>
