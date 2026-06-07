@@ -1,0 +1,13 @@
+{
+  "name": "autobot-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./css/styles.css --minify",
+    "dev": "tailwindcss -i ./src/input.css -o ./css/styles.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "tailwindcss": "^3.4.17"
+  }
+}
