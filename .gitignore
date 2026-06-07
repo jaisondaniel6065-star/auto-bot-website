@@ -1,3 +1,4 @@
 node_modules/
-css/styles.css
 package-lock.json
+tailwindcss.exe
+tailwindcss-windows-x64.exe
