@@ -63,38 +63,54 @@
   *, *::before, *::after { box-sizing: border-box; }
   img, video, iframe { max-width: 100%; height: auto; }
 
-  /* ===== MOBILE NAV: explicit header and menu layout ===== */
+  /* ===== MOBILE HEADER: logo left, hamburger right ===== */
   @media (max-width: 767px) {
-    /* Header bar — logo left, hamburger right */
     header > div {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-left: 16px;
-      padding-right: 16px;
+      padding-left: 18px;
+      padding-right: 18px;
     }
-    /* Mobile menu top bar — brand left, close right */
-    #mobile-menu > div:first-child {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-left: 16px;
-      padding-right: 16px;
-    }
-    /* Menu items — comfortable tap targets, clear spacing */
-    #mobile-menu nav a {
-      font-size: 17px !important;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      padding-top: 14px !important;
-      padding-bottom: 14px !important;
-      width: 100%;
-      text-align: center;
-      display: block;
-    }
-    #mobile-menu nav {
-      gap: 4px !important;
-    }
+  }
+
+  /* ===== MOBILE DROPDOWN MENU ===== */
+  #mobile-menu {
+    display: none;
+    position: fixed;
+    top: 80px;
+    right: 16px;
+    width: 256px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.09);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+    z-index: 49;
+    overflow: hidden;
+  }
+  #mobile-menu nav {
+    display: flex;
+    flex-direction: column;
+  }
+  #mobile-menu nav a {
+    display: block;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    transition: background 0.15s;
+  }
+  #mobile-menu nav a:hover {
+    background: rgba(178,0,36,0.05);
+  }
+  #mobile-menu nav a:last-child {
+    border-bottom: none;
+  }
+  #mobile-menu .dropdown-footer {
+    padding: 10px 16px 14px;
+    border-top: 1px solid rgba(0,0,0,0.06);
   }
 
   /* ===== MOBILE OPTIMIZATIONS (≤767px) ===== */
@@ -144,21 +160,15 @@
   </div>
 </header>
 
-<!-- ===== MOBILE MENU ===== -->
-<div class="hidden fixed inset-0 z-50 bg-surface flex flex-col" id="mobile-menu">
-  <div class="flex justify-between items-center px-margin-mobile h-[80px] border-b border-outline-variant/20">
-    <span class="text-headline-md font-headline-md uppercase text-on-surface">Autobot</span>
-    <button class="w-11 h-11 flex items-center justify-center tap-target" id="menu-close" aria-label="Close menu">
-      <span class="material-symbols-outlined text-[28px]">close</span>
-    </button>
-  </div>
-  <nav class="flex flex-col items-center justify-center flex-1">
+<!-- ===== MOBILE DROPDOWN MENU ===== -->
+<div id="mobile-menu">
+  <nav>
     <a class="mobile-nav-link text-primary" href="#home">Home</a>
-    <a class="mobile-nav-link text-secondary hover:text-primary transition-colors" href="#services">Services</a>
-    <a class="mobile-nav-link text-secondary hover:text-primary transition-colors" href="#products">Products</a>
-    <a class="mobile-nav-link text-secondary hover:text-primary transition-colors" href="#contact">Contact</a>
+    <a class="mobile-nav-link text-secondary" href="#services">Services</a>
+    <a class="mobile-nav-link text-secondary" href="#products">Products</a>
+    <a class="mobile-nav-link text-secondary" href="#contact">Contact</a>
   </nav>
-  <div class="px-margin-mobile pb-xl">
+  <div class="dropdown-footer">
     <a class="mobile-nav-link block w-full bg-primary-container text-on-primary font-label-bold text-label-bold px-md py-sm rounded-lg hover:opacity-90 text-center" href="#contact">Book Appointment</a>
   </div>
 </div>
@@ -747,18 +757,30 @@
 </a>
 
 <script>
-  // Mobile menu open/close
-  document.getElementById('menu-toggle').addEventListener('click', () => {
-    document.getElementById('mobile-menu').classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-  });
-  document.getElementById('menu-close').addEventListener('click', closeMobileMenu);
+  // Mobile dropdown menu
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuToggle = document.getElementById('menu-toggle');
+
   function closeMobileMenu() {
-    document.getElementById('mobile-menu').classList.add('hidden');
-    document.body.style.overflow = '';
+    mobileMenu.style.display = 'none';
+    menuToggle.setAttribute('aria-expanded', 'false');
   }
 
-  // Close mobile menu when any nav link is clicked
+  menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = mobileMenu.style.display === 'block';
+    mobileMenu.style.display = isOpen ? 'none' : 'block';
+    menuToggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  // Close when clicking outside the menu or toggle
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+      closeMobileMenu();
+    }
+  });
+
+  // Close when a nav link is clicked
   document.querySelectorAll('.mobile-nav-link').forEach(link => {
     link.addEventListener('click', closeMobileMenu);
   });
